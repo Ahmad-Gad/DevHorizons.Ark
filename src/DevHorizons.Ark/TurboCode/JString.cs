@@ -6,19 +6,22 @@
 //     Defines all the needed string's manipulation operations methods.
 // </summary>
 // <Created>
-//     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+//     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
 //     <DateTime>24/08/2010  10:22 AM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
 namespace DevHorizons.Ark
 {
+    using System.Diagnostics;
     using System.Globalization;
+
+    using Exceptions;
 
     /// <summary>
     ///     Defines all the needed string's manipulation operations methods.
     /// </summary>
     /// <Created>
-    ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+    ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
     ///     <DateTime>30/06/2012  06:17 PM</DateTime>
     /// </Created>
     public static class JString
@@ -28,7 +31,7 @@ namespace DevHorizons.Ark
         /// Gets the Carriage Return.
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:02 PM</DateTime>
         /// </Created>
         public static string CrLf
@@ -46,7 +49,7 @@ namespace DevHorizons.Ark
         ///     Gets the Horizontal Tab spaces value.
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static string HorizontalTab
@@ -61,7 +64,7 @@ namespace DevHorizons.Ark
         ///     Gets the white space string value.
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>24/08/2022 08:12 PM</DateTime>
         /// </Created>
         public static string WhiteSpace
@@ -81,7 +84,7 @@ namespace DevHorizons.Ark
         /// <param name="source">The source object to be converted.</param>
         /// <returns>Valid safe-type String</returns>
         /// <Created>
-        ///      <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///      <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///      <DateTime>24/08/2010  2:16 PM</DateTime>
         /// </Created>
         public static string ToSafeString(this object source)
@@ -96,7 +99,7 @@ namespace DevHorizons.Ark
         /// <param name="defaultValue">The default return (replacement) value in case if the conversion operation failed.</param>
         /// <returns>Valid safe-type String</returns>
         /// <Created>
-        ///      <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///      <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///      <DateTime>24/08/2010  2:16 PM</DateTime>
         /// </Created>
         public static string ToSafeString(this object source, string defaultValue)
@@ -114,7 +117,7 @@ namespace DevHorizons.Ark
         ///   <c>True</c> if the specified source is in lower case; otherwise, <c>false</c>.
         /// </returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:57 PM</DateTime>
         /// </Created>
         public static bool IsLower(this string source)
@@ -130,7 +133,7 @@ namespace DevHorizons.Ark
         ///   <c>True</c> if the specified source is in upper case; otherwise, <c>false</c>.
         /// </returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:57 PM</DateTime>
         /// </Created>
         public static bool IsUpper(this string source)
@@ -156,7 +159,7 @@ namespace DevHorizons.Ark
         /// <returns>Collection of split strings by a specific separator.</returns>
         /// <remarks>Returns <c>null</c> if any validation failed like invalid start/end position or invalid separator/delimiter.</remarks>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, string delimiter, bool matchCase = true)
@@ -179,7 +182,7 @@ namespace DevHorizons.Ark
         /// <returns>Collection of split strings by a specific separator.</returns>
         /// <remarks>Returns <c>null</c> if any validation failed like invalid start/end position or invalid separator/delimiter.</remarks>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, string delimiter, int start, bool matchCase = true)
@@ -202,7 +205,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>Collection of split strings by a specific separator.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, string delimiter, int start, int end, bool matchCase = true)
@@ -299,7 +302,7 @@ namespace DevHorizons.Ark
         /// <returns>Collection of split strings by a specific separator character.</returns>
         /// <remarks>Returns <c>null</c> if any validation failed like invalid start/end position or invalid separator/delimiter.</remarks>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, char delimiter, bool matchCase = true)
@@ -322,7 +325,7 @@ namespace DevHorizons.Ark
         /// <returns>Collection of split strings by a specific separator character.</returns>
         /// <remarks>Returns <c>null</c> if any validation failed like invalid start/end position or invalid separator/delimiter.</remarks>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, char delimiter, int start, bool matchCase = true)
@@ -346,12 +349,12 @@ namespace DevHorizons.Ark
         /// <returns>Collection of split strings by a specific separator character.</returns>
         /// <remarks>Returns <c>null</c> if any validation failed like invalid start/end position or invalid separator/delimiter.</remarks>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, char delimiter, int start, int end, bool matchCase = true)
         {
-            if (start < 0 || end <= 0 || start >= end || end > source.Length - 1)
+            if (start < 0 || end <= 0 || start >= end || end >= source.Length)
             {
                 return null;
             }
@@ -439,7 +442,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>Array of string from a single string using two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, string leftDelimiter, string rightDelimiter, bool matchCase = true)
@@ -463,7 +466,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>Array of string from a single string using two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, string leftDelimiter, string rightDelimiter, int start, bool matchCase = true)
@@ -487,7 +490,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>Array of string from a single string using two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, string leftDelimiter, string rightDelimiter, int start, int end, bool matchCase = true)
@@ -578,7 +581,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>Array of string from a single string using two character delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, char leftDelimiter, char rightDelimiter, bool matchCase = true)
@@ -601,7 +604,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>Array of string from a single string using two character delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, char leftDelimiter, char rightDelimiter, int start, bool matchCase = true)
@@ -625,12 +628,12 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>Array of string from a single string using two character delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static List<string> JSplit(this string source, char leftDelimiter, char rightDelimiter, int start, int end, bool matchCase = true)
         {
-            if (start < 0 || end <= 0 || start >= end || end > source.Length - 1)
+            if (start < 0 || end <= 0 || start >= end || start >= source.Length || end >= source.Length)
             {
                 return null;
             }
@@ -656,30 +659,24 @@ namespace DevHorizons.Ark
             //// ---------------------------------------------------------
             for (var i = 0; i < len; i++)
             {
-                var txtCutLeft = txt[i];
 
-                if (txtCutLeft == leftDel)
+                if (start == -1)
                 {
-                    start = i + 1;
-                }
+                    var txtCutLeft = txt[i];
 
-                if (start != -1)
+                    if (txtCutLeft == leftDel)
+                    {
+                        start = i + 1;
+                    }
+                } 
+                else
                 {
                     var txtCutRigh = txt[i];
 
                     if (txtCutRigh == rightDel)
                     {
-                        if (i == start)
-                        {
-                            array.Add(string.Empty);
-                        }
-                        else
-                        {
-                            end = i - 1;
-
-                            array.Add(source.Slice(start, end));
-                        }
-
+                        end = i - 1;
+                        array.Add(source.Slice(start, end));
                         start = -1;
                     }
                 }
@@ -701,7 +698,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The specified index for the split item.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string delimiter, int index)
@@ -718,7 +715,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string delimiter, int index, bool matchCase)
@@ -735,7 +732,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the split operation should start.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string delimiter, int index, int start)
@@ -753,7 +750,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string delimiter, int index, int start, bool matchCase)
@@ -771,7 +768,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the split operation should stop.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string delimiter, int index, int start, int end)
@@ -790,7 +787,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string delimiter, int index, int start, int end, bool matchCase)
@@ -890,7 +887,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The specified index for the split item.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char delimiter, int index)
@@ -907,7 +904,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char delimiter, int index, bool matchCase)
@@ -924,7 +921,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the split operation should start.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char delimiter, int index, int start)
@@ -942,7 +939,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char delimiter, int index, int start, bool matchCase)
@@ -960,7 +957,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the split operation should stop.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char delimiter, int index, int start, int end)
@@ -979,7 +976,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char delimiter, int index, int start, int end, bool matchCase)
@@ -1074,7 +1071,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The index of the split string.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string leftDelimiter, string rightDelimiter, int index)
@@ -1092,7 +1089,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string leftDelimiter, string rightDelimiter, int index, bool matchCase)
@@ -1110,7 +1107,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start position in the source string.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string leftDelimiter, string rightDelimiter, int index, int start)
@@ -1129,7 +1126,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string leftDelimiter, string rightDelimiter, int index, int start, bool matchCase)
@@ -1148,7 +1145,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end position in the source string.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string leftDelimiter, string rightDelimiter, int index, int start, int end)
@@ -1168,7 +1165,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, string leftDelimiter, string rightDelimiter, int index, int start, int end, bool matchCase)
@@ -1255,7 +1252,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The index of the split string.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char leftDelimiter, char rightDelimiter, int index)
@@ -1273,7 +1270,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char leftDelimiter, char rightDelimiter, int index, bool matchCase)
@@ -1291,7 +1288,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start position in the source string.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char leftDelimiter, char rightDelimiter, int index, int start)
@@ -1310,7 +1307,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char leftDelimiter, char rightDelimiter, int index, int start, bool matchCase)
@@ -1329,7 +1326,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end position in the source string.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char leftDelimiter, char rightDelimiter, int index, int start, int end)
@@ -1349,7 +1346,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the left a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitLeft(this string source, char leftDelimiter, char rightDelimiter, int index, int start, int end, bool matchCase)
@@ -1429,7 +1426,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The specified index for the split item.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string delimiter, int index)
@@ -1446,7 +1443,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string delimiter, int index, bool matchCase)
@@ -1463,7 +1460,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the split operation should start.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string delimiter, int index, int start)
@@ -1481,7 +1478,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string delimiter, int index, int start, bool matchCase)
@@ -1499,7 +1496,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the split operation should stop.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string delimiter, int index, int start, int end)
@@ -1518,7 +1515,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string delimiter, int index, int start, int end, bool matchCase)
@@ -1595,7 +1592,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The specified index for the split item.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char delimiter, int index)
@@ -1612,7 +1609,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char delimiter, int index, bool matchCase)
@@ -1629,7 +1626,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the split operation should start.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char delimiter, int index, int start)
@@ -1647,7 +1644,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char delimiter, int index, int start, bool matchCase)
@@ -1665,7 +1662,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the split operation should stop.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char delimiter, int index, int start, int end)
@@ -1684,7 +1681,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The split item based on the specified index and specific separator character.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char delimiter, int index, int start, int end, bool matchCase)
@@ -1761,7 +1758,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The index of the split string.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string leftDelimiter, string rightDelimiter, int index)
@@ -1779,7 +1776,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string leftDelimiter, string rightDelimiter, int index, bool matchCase)
@@ -1797,7 +1794,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start position in the source string.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string leftDelimiter, string rightDelimiter, int index, int start)
@@ -1816,7 +1813,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string leftDelimiter, string rightDelimiter, int index, int start, bool matchCase)
@@ -1835,7 +1832,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end position in the source string.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string leftDelimiter, string rightDelimiter, int index, int start, int end)
@@ -1855,7 +1852,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, string leftDelimiter, string rightDelimiter, int index, int start, int end, bool matchCase)
@@ -1939,7 +1936,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The index of the split string.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char leftDelimiter, char rightDelimiter, int index)
@@ -1957,7 +1954,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char leftDelimiter, char rightDelimiter, int index, bool matchCase)
@@ -1975,7 +1972,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start position in the source string.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char leftDelimiter, char rightDelimiter, int index, int start)
@@ -1994,7 +1991,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char leftDelimiter, char rightDelimiter, int index, int start, bool matchCase)
@@ -2013,7 +2010,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end position in the source string.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char leftDelimiter, char rightDelimiter, int index, int start, int end)
@@ -2033,7 +2030,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c>, split using the sensitive case search, otherwise, ignore the case.</param>
         /// <returns>A split string starting from the right a string between two string delimiters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>07/11/2012 02:39 PM</DateTime>
         /// </Created>
         public static string SplitRight(this string source, char leftDelimiter, char rightDelimiter, int index, int start, int end, bool matchCase)
@@ -2108,7 +2105,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The specified index for the split item.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, string delimiter, int index)
@@ -2125,7 +2122,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, string delimiter, int index, bool matchCase)
@@ -2146,7 +2143,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, string delimiter, int index, Direction splitDirection)
@@ -2168,7 +2165,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, string delimiter, int index, Direction splitDirection, bool matchCase)
@@ -2190,7 +2187,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the split operation should start.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, string delimiter, int index, Direction splitDirection, int start)
@@ -2213,7 +2210,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, string delimiter, int index, Direction splitDirection, int start, bool matchCase)
@@ -2236,7 +2233,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the split operation should stop.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, string delimiter, int index, Direction splitDirection, int start, int end)
@@ -2260,7 +2257,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, string delimiter, int index, Direction splitDirection, int start, int end, bool matchCase)
@@ -2364,7 +2361,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The specified index for the split item.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, char delimiter, int index)
@@ -2381,7 +2378,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, char delimiter, int index, bool matchCase)
@@ -2402,7 +2399,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, char delimiter, int index, Direction splitDirection)
@@ -2424,7 +2421,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, char delimiter, int index, Direction splitDirection, bool matchCase)
@@ -2446,7 +2443,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the split operation should start.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, char delimiter, int index, Direction splitDirection, int start)
@@ -2469,7 +2466,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, char delimiter, int index, Direction splitDirection, int start, bool matchCase)
@@ -2492,7 +2489,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the split operation should stop.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, char delimiter, int index, Direction splitDirection, int start, int end)
@@ -2516,7 +2513,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutLeft(this string source, char delimiter, int index, Direction splitDirection, int start, int end, bool matchCase)
@@ -2621,7 +2618,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The specified index for the split item.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, string delimiter, int index)
@@ -2639,7 +2636,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, string delimiter, int index, bool matchCase)
@@ -2661,7 +2658,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, string delimiter, int index, Direction splitDirection)
@@ -2684,7 +2681,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, string delimiter, int index, Direction splitDirection, bool matchCase)
@@ -2707,7 +2704,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the split operation should start.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, string delimiter, int index, Direction splitDirection, int start)
@@ -2731,7 +2728,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, string delimiter, int index, Direction splitDirection, int start, bool matchCase)
@@ -2755,7 +2752,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the split operation should stop.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, string delimiter, int index, Direction splitDirection, int start, int end)
@@ -2780,7 +2777,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, string delimiter, int index, Direction splitDirection, int start, int end, bool matchCase)
@@ -2884,7 +2881,7 @@ namespace DevHorizons.Ark
         /// <param name="index">The specified index for the split item.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, char delimiter, int index)
@@ -2902,7 +2899,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, char delimiter, int index, bool matchCase)
@@ -2924,7 +2921,7 @@ namespace DevHorizons.Ark
         /// </param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, char delimiter, int index, Direction splitDirection)
@@ -2947,7 +2944,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, char delimiter, int index, Direction splitDirection, bool matchCase)
@@ -2970,7 +2967,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the split operation should start.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, char delimiter, int index, Direction splitDirection, int start)
@@ -2994,7 +2991,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, char delimiter, int index, Direction splitDirection, int start, bool matchCase)
@@ -3018,7 +3015,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the split operation should stop.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, char delimiter, int index, Direction splitDirection, int start, int end)
@@ -3043,15 +3040,99 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">The matching case of comparing whether it's sensitive or insensitive.</param>
         /// <returns>The captured part of a string after or before a specific separator based on the specified index.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  02:16 PM</DateTime>
         /// </Created>
         public static string SplitCutRight(this string source, char delimiter, int index, Direction splitDirection, int start, int end, bool matchCase)
         {
-            if (index < 0 || start < 0 || end <= 0 || index >= source.Length || start >= end || end > source.Length - 1)
+            if (source.Length == 0)
             {
-                return null;
+                var argumentName = nameof(source);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be empty string";
+                var exceptionCode = ArgumentExceptionCode.EmptyString;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
             }
+
+            if (index < 0)
+            {
+                var argumentName = nameof(index);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (start < 0)
+            {
+                var argumentName = nameof(start);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (end <= 0)
+            {
+                var argumentName = nameof(end);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than or equal zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (index >= source.Length)
+            {
+                var argumentName = nameof(index);
+                var conflictArgument = nameof(source);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The '{argumentName}' cannot be greater than or equal to the length of the input string value of the argument '{conflictArgument}'.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+            if (end > source.Length - 1)
+            {
+                var argumentName = nameof(end);
+                var conflictArgument = nameof(source);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The '{argumentName}' cannot be greater than the length of the upper bound index of the string value of the argument '{conflictArgument}'.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+
+            if (start >= end)
+            {
+                var argumentName = nameof(start);
+                var conflictArgument = nameof(end);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The value of the '{argumentName}' argument cannot be greater than or equal the value of the argument '{conflictArgument}'.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
 
             source = source.Slice(start, end);
 
@@ -3106,7 +3187,7 @@ namespace DevHorizons.Ark
                     else
                     {
                         start = start == -1 ? 0 : start;
-                        end = end == -1 ? end = source.Length - 1 : end;
+                        end = end == -1 ? source.Length - 1 : end;
                     }
                 }
                 else
@@ -3147,7 +3228,7 @@ namespace DevHorizons.Ark
         /// <param name="endPosition">The last index position to slice.</param>
         /// <returns>A slice of string which has specific start index and specific end index within the string length.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>15/07/2012  01:17 AM</DateTime>
         /// </Created>
         public static string Slice(this string source, int startPosition, int endPosition)
@@ -3172,7 +3253,7 @@ namespace DevHorizons.Ark
         /// <param name="newValue">The replacement new string value.</param>
         /// <returns>The modified string with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, string oldValue, string newValue)
@@ -3189,7 +3270,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, string oldValue, string newValue, bool matchCase)
@@ -3207,7 +3288,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, string oldValue, string newValue, int start, bool matchCase)
@@ -3224,7 +3305,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the replace operation should start.</param>
         /// <returns>The modified string with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, string oldValue, string newValue, int start)
@@ -3242,7 +3323,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the replace operation should stop.</param>
         /// <returns>The modified string with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, string oldValue, string newValue, int start, int end)
@@ -3261,7 +3342,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, string oldValue, string newValue, int start, int end, bool matchCase)
@@ -3320,7 +3401,7 @@ namespace DevHorizons.Ark
         /// <param name="newValue">The replacement new character value.</param>
         /// <returns>The modified character with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, char oldValue, char newValue)
@@ -3337,7 +3418,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified character with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, char oldValue, char newValue, bool matchCase)
@@ -3355,7 +3436,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified character with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, char oldValue, char newValue, int start, bool matchCase)
@@ -3372,7 +3453,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the character, where the replace operation should start.</param>
         /// <returns>The modified character with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, char oldValue, char newValue, int start)
@@ -3390,7 +3471,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the character, where the replace operation should stop.</param>
         /// <returns>The modified character with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, char oldValue, char newValue, int start, int end)
@@ -3409,7 +3490,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified character with the new values after the replace process.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, char oldValue, char newValue, int start, int end, bool matchCase)
@@ -3463,7 +3544,7 @@ namespace DevHorizons.Ark
         /// <param name="dictionary">The dictionary of strings to used for the multi replace.</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of strings.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<string, string> dictionary)
@@ -3479,7 +3560,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of strings.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<string, string> dictionary, bool matchCase)
@@ -3495,7 +3576,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the replace operation should start.</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of strings.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<string, string> dictionary, int start)
@@ -3512,7 +3593,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the replace operation should stop.</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of strings.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<string, string> dictionary, int start, int end)
@@ -3529,7 +3610,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of strings.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<string, string> dictionary, int start, bool matchCase)
@@ -3547,7 +3628,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of strings.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<string, string> dictionary, int start, int end, bool matchCase)
@@ -3608,7 +3689,7 @@ namespace DevHorizons.Ark
         /// <param name="dictionary">The dictionary of characters to used for the multi replace.</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of characters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<char, char> dictionary)
@@ -3624,7 +3705,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of characters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<char, char> dictionary, bool matchCase)
@@ -3640,7 +3721,7 @@ namespace DevHorizons.Ark
         /// <param name="start">The start index in the string, where the replace operation should start.</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of characters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<char, char> dictionary, int start)
@@ -3657,7 +3738,7 @@ namespace DevHorizons.Ark
         /// <param name="end">The end index in the string, where the replace operation should stop.</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of characters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<char, char> dictionary, int start, int end)
@@ -3674,7 +3755,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of characters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<char, char> dictionary, int start, bool matchCase)
@@ -3692,7 +3773,7 @@ namespace DevHorizons.Ark
         /// <param name="matchCase">If set to <c>true</c> comparing in sensitive case (Same as Binary Search), otherwise else; comparing in insensitive case same as (Same as Text Search).</param>
         /// <returns>The modified string that had a replacing operations with multiple strings with multiple values based on the specified dictionary of characters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 04:25 PM</DateTime>
         /// </Created>
         public static string Replace(this string source, Dictionary<char, char> dictionary, int start, int end, bool matchCase)
@@ -3752,7 +3833,7 @@ namespace DevHorizons.Ark
         /// <param name="length">The length (count) of characters to capture.</param>
         /// <returns>The left part of string based on the mentioned length.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  05:17 PM</DateTime>
         /// </Created>
         public static string Left(this string source, int length)
@@ -3772,7 +3853,7 @@ namespace DevHorizons.Ark
         /// <param name="length">The length (count) of characters to capture.</param>
         /// <returns>The right part of string based on the mentioned length.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  05:17 PM</DateTime>
         /// </Created>
         public static string Right(this string source, int length)
@@ -3791,7 +3872,7 @@ namespace DevHorizons.Ark
         /// <param name="source">The source string.</param>
         /// <returns>String with initial caps characters.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 02:04 PM</DateTime>
         /// </Created>
         public static string ToInitialCaps(this string source)
@@ -3806,7 +3887,8 @@ namespace DevHorizons.Ark
                 return string.Empty;
             }
 
-            var newString = string.Empty + source[0].ToUpper();
+            source = source.ToLowerInvariant();
+            var newString = source[0].ToUpper().ToString();
 
             if (source.Length == 1)
             {
@@ -3836,7 +3918,7 @@ namespace DevHorizons.Ark
         /// <param name="source">The source.</param>
         /// <returns>The string's characters cases reverted, from upper to lower, and from lower to upper.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 02:07 PM</DateTime>
         /// </Created>
         public static string ToRevertedCase(this string source)
@@ -3922,7 +4004,7 @@ namespace DevHorizons.Ark
         ///// <param name="source">The source.</param>
         ///// <returns>The first single name of a specific object.</returns>
         ///// <Created>
-        /////     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        /////     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         /////     <DateTime>23/08/2013 02:07 PM</DateTime>
         ///// </Created>
         //public static string GetObjectName(this object source)
@@ -3939,7 +4021,7 @@ namespace DevHorizons.Ark
         ///// <param name="source">The source.</param>
         ///// <returns>The first single name of a specific Generic Type.</returns>
         ///// <Created>
-        /////     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        /////     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         /////     <DateTime>23/08/2013 02:07 PM</DateTime>
         ///// </Created>
         //public static string GetGenericTypeName<T>(this IEnumerable<T> source)
@@ -3957,7 +4039,7 @@ namespace DevHorizons.Ark
         /// <param name="redundantCount">The redundant count for the specified string concatenation.</param>
         /// <returns>Concatenated string with a specific source keyword and specific redundant count.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:38 PM</DateTime>
         /// </Created>
         public static string Repeat(this string keyword, int redundantCount)
@@ -3973,7 +4055,7 @@ namespace DevHorizons.Ark
         /// <param name="delimiter">The delimiter string used as a separator between the keywords concatenation.</param>
         /// <returns>Concatenated string with a specific source keyword and specific redundant count.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:38 PM</DateTime>
         /// </Created>
         public static string Repeat(this string keyword, int redundantCount, string delimiter)
@@ -4004,7 +4086,7 @@ namespace DevHorizons.Ark
         /// <param name="redundantCount">The redundant count for the specified string concatenation.</param>
         /// <returns>Concatenated string with a specific source character and specific redundant count.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:38 PM</DateTime>
         /// </Created>
         public static string Repeat(this char keyword, int redundantCount)
@@ -4021,7 +4103,7 @@ namespace DevHorizons.Ark
         /// <returns>Concatenated string with a specific source character and specific redundant count.</returns>
         /// <remarks>If the <c>redundantCount</c> value is lower than 1, it will return <c>null</c>.</remarks>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:38 PM</DateTime>
         /// </Created>
         public static string Repeat(this char keyword, int redundantCount, string delimiter)
@@ -4052,7 +4134,7 @@ namespace DevHorizons.Ark
         /// <returns>Concatenated white spaces string based on a specific redundant count.</returns>
         /// <remarks>If the <c>redundantCount</c> value is lower than 1, it will return <c>null</c>.</remarks>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2022 02:38 PM</DateTime>
         /// </Created>
         public static string Space(int redundantCount)
@@ -4066,7 +4148,7 @@ namespace DevHorizons.Ark
         /// <param name="redundantCount">The redundant count for the specified string concatenation.</param>
         /// <returns>Concatenated white spaces string based on a specific redundant count.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>24/08/2022 07:10 PM</DateTime>
         /// </Created>
         public static string Tab(int redundantCount)

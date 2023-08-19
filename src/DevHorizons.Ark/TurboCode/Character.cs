@@ -6,7 +6,7 @@
 //     Defines all the needed characters members.
 // </summary>
 // <Created>
-//     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+//     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
 //     <DateTime>24/08/2010  10:22 AM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ namespace DevHorizons.Ark
     ///     Defines all the needed characters members.
     /// </summary>
     /// <Created>
-    ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+    ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
     ///     <DateTime>21/11/2012 05:50 PM</DateTime>
     /// </Created>
     public static class Character
@@ -26,7 +26,7 @@ namespace DevHorizons.Ark
         ///     Gets the Null Char (<![CDATA[0]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Null
@@ -42,7 +42,7 @@ namespace DevHorizons.Ark
         ///     Gets the white space value <![CDATA[( )]]>.
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char WhiteSpace
@@ -58,7 +58,7 @@ namespace DevHorizons.Ark
         ///    <para>ASCII Code: 10</para>
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:02 PM</DateTime>
         /// </Created>
         public static char Cr
@@ -74,7 +74,7 @@ namespace DevHorizons.Ark
         ///    <para>ASCII Code: 13</para>
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:02 PM</DateTime>
         /// </Created>
         public static char Lf
@@ -89,7 +89,7 @@ namespace DevHorizons.Ark
         ///     Gets the Horizontal Tab spaces value <![CDATA[(      )]]>.
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char HorizontalTab
@@ -104,7 +104,7 @@ namespace DevHorizons.Ark
         ///     Gets the Single Quote (<![CDATA[']]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char SingleQuote
@@ -119,7 +119,7 @@ namespace DevHorizons.Ark
         ///     Gets the Double Quotes (<![CDATA["]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char DoubleQuotes
@@ -134,7 +134,7 @@ namespace DevHorizons.Ark
         ///     Gets the Opening Brace (Left Brace) (<![CDATA[{]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char OpeningBrace
@@ -149,7 +149,7 @@ namespace DevHorizons.Ark
         ///     Gets the Closing Brace (Right Brace) (<![CDATA[}]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char ClosingBrace
@@ -164,7 +164,7 @@ namespace DevHorizons.Ark
         ///     Gets the Slash (<![CDATA[/]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Slash
@@ -179,7 +179,7 @@ namespace DevHorizons.Ark
         ///     Gets the Back Slash (<![CDATA[\]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char BackSlash
@@ -194,7 +194,7 @@ namespace DevHorizons.Ark
         ///     Gets the Colon (<![CDATA[:]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Colon
@@ -209,7 +209,7 @@ namespace DevHorizons.Ark
         ///     Gets the Colon (<![CDATA[;]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char SemiColon
@@ -224,7 +224,7 @@ namespace DevHorizons.Ark
         ///     Gets the Vertical Bar (<![CDATA[|]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char VerticalBar
@@ -239,7 +239,7 @@ namespace DevHorizons.Ark
         ///     Gets the Equals (<![CDATA[=]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static new char Equals
@@ -254,7 +254,7 @@ namespace DevHorizons.Ark
         ///     Gets the Exclamation Mark (<![CDATA[!]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char ExclamationMark
@@ -269,7 +269,7 @@ namespace DevHorizons.Ark
         ///     Gets the HashSign (<![CDATA[#]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char HashSign
@@ -284,7 +284,7 @@ namespace DevHorizons.Ark
         ///     Gets the Equivalency Sign (<![CDATA[~]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char EquivalencySign
@@ -299,7 +299,7 @@ namespace DevHorizons.Ark
         ///     Gets the Dollar Sign (<![CDATA[$]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char DollarSign
@@ -314,7 +314,7 @@ namespace DevHorizons.Ark
         ///     Gets the Percent Sign (<![CDATA[%]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char PercentSign
@@ -329,7 +329,7 @@ namespace DevHorizons.Ark
         ///     Gets the Ampersand (<![CDATA[&]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Ampersand
@@ -344,7 +344,7 @@ namespace DevHorizons.Ark
         ///     Gets the Asterisk (<![CDATA[*]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Asterisk
@@ -359,7 +359,7 @@ namespace DevHorizons.Ark
         ///     Gets the Plus (<![CDATA[+]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Plus
@@ -374,7 +374,7 @@ namespace DevHorizons.Ark
         ///     Gets the Comma (<![CDATA[,]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Comma
@@ -389,7 +389,7 @@ namespace DevHorizons.Ark
         ///     Gets the Hyphen (<![CDATA[-]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Hyphen
@@ -404,7 +404,7 @@ namespace DevHorizons.Ark
         ///     Gets the Period (<![CDATA[.]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Period
@@ -419,7 +419,7 @@ namespace DevHorizons.Ark
         ///     Gets the Question Mark (<![CDATA[?]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char QuestionMark
@@ -434,7 +434,7 @@ namespace DevHorizons.Ark
         ///     Gets the At Sign (<![CDATA[@]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char AtSign
@@ -449,7 +449,7 @@ namespace DevHorizons.Ark
         ///     Gets the Circumflex/Caret (<![CDATA[^]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char Circumflex
@@ -464,7 +464,7 @@ namespace DevHorizons.Ark
         ///     Gets the Under-Score (<![CDATA[_]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char UnderScore
@@ -479,7 +479,7 @@ namespace DevHorizons.Ark
         ///     Gets the Grave Accent (<![CDATA[`]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char GraveAccent
@@ -494,7 +494,7 @@ namespace DevHorizons.Ark
         ///     Gets the Opening Square Bracket (<![CDATA[[]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char OpeningSquareBracket
@@ -509,7 +509,7 @@ namespace DevHorizons.Ark
         ///     Gets the Closing Square Bracket (<![CDATA[]]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char ClosingSquareBracket
@@ -524,7 +524,7 @@ namespace DevHorizons.Ark
         ///     Gets the Opening Bracket (<![CDATA[(]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char OpeningBracket
@@ -539,7 +539,7 @@ namespace DevHorizons.Ark
         ///     Gets the Closing Bracket (<![CDATA[)]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char ClosingBracket
@@ -554,7 +554,7 @@ namespace DevHorizons.Ark
         ///     Gets the Less Than (<![CDATA[<]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char LessThan
@@ -569,7 +569,7 @@ namespace DevHorizons.Ark
         ///     Gets the Greater Than (<![CDATA[>]]>).
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>12/11/2012 02:34 PM</DateTime>
         /// </Created>
         public static char GreaterThan
@@ -586,7 +586,7 @@ namespace DevHorizons.Ark
         ///     <para>HEX Code: 20AC</para>
         /// </summary>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>24/08/2022 08:25 PM</DateTime>
         /// </Created>
         public static char EuroSign
@@ -609,7 +609,7 @@ namespace DevHorizons.Ark
         ///   <c>True</c> if the specified source is in lower case; otherwise, <c>false</c>.
         /// </returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:57 PM</DateTime>
         /// </Created>
         public static bool IsLower(this char source)
@@ -625,7 +625,7 @@ namespace DevHorizons.Ark
         ///   <c>True</c> if the specified source is in upper case; otherwise, <c>false</c>.
         /// </returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:57 PM</DateTime>
         /// </Created>
         public static bool IsUpper(this char source)
@@ -641,7 +641,7 @@ namespace DevHorizons.Ark
         /// <param name="source">The source object to be converted.</param>
         /// <returns>Valid "char" value</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>30/06/2012  05:55 PM</DateTime>
         /// </Created>
         public static char ToChar(this object source)
@@ -656,7 +656,7 @@ namespace DevHorizons.Ark
         /// <param name="defaultValue">The default return (replacement) value in case if the conversion operation failed.</param>
         /// <returns>Valid "char" value</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>30/06/2012  05:55 PM</DateTime>
         /// </Created>
         public static char ToChar(this object source, char defaultValue)
@@ -677,7 +677,7 @@ namespace DevHorizons.Ark
         /// <param name="source">The source character to be converted.</param>
         /// <returns>Valid ASCII code ("Integer")</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>30/06/2012  05:55 PM</DateTime>
         /// </Created>
         public static int GetAsciiCode(this char source)
@@ -690,7 +690,7 @@ namespace DevHorizons.Ark
         /// <param name="source">The source character.</param>
         /// <returns>Character with upper case.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>20/10/2012 01:32 PM</DateTime>
         /// </Created>
         public static char ToUpper(this char source)
@@ -704,7 +704,7 @@ namespace DevHorizons.Ark
         /// <param name="source">The source character.</param>
         /// <returns>Character with lowered case.</returns>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>20/10/2012 01:32 PM</DateTime>
         /// </Created>
         public static char ToLower(this char source)

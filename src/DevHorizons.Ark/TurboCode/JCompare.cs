@@ -6,7 +6,7 @@
 //     Defines all the needed extension methods required to compare between objects/values/items.
 // </summary>
 // <Created>
-//     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+//     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
 //     <DateTime>24/08/2010  10:22 AM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ namespace DevHorizons.Ark
     ///     Defines all the needed extension methods required to compare between objects/values/items.
     /// </summary>
     /// <Created>
-    ///     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+    ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
     ///     <DateTime>24/08/2022  10:11 PM</DateTime>
     /// </Created>
     public static class JCompare
@@ -30,19 +30,19 @@ namespace DevHorizons.Ark
         /// <returns><c>true</c> if all the items within the two collection are exactly matching; otherwise else, <c>false</c>.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <Created>
-        ///     <Author>Ahmad Adel Gad (ahmad.adel@devhorizons.com)</Author>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>24/08/2022 10:21 PM</DateTime>
         /// </Created>
         public static bool CompareTo<T>(this IEnumerable<T> source, IEnumerable<T> value)
         {
             if (source is null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
 
             if (value is null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (source.Count() != value.Count())

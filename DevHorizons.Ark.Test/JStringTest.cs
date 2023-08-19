@@ -116,5 +116,84 @@
             Assert.Equal(expected, actual);
         }
         #endregion Convert
+
+        #region Quick Manipulation
+        [Fact]
+        public void ToInitialCaps()
+        {
+            var name = "ahmad adel gad";
+            var name2 = "ahmad Adel GAD";
+
+            var expected = "Ahmad Adel Gad";
+            var actual = name.ToInitialCaps();
+            Assert.True(actual.Equals(name2.ToInitialCaps()));
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ToInitialCapsSingleQuote()
+        {
+            var name2 = "ahmad Adel GAD's son";
+
+            var expected = "Ahmad Adel Gad's Son";
+            Assert.Equal(expected, name2.ToInitialCaps());
+        }
+
+        [Fact]
+        public void ToInitialCapsSingleSpecialChars()
+        {
+            var name2 = "ahmad Adel GAD's@son";
+
+            var expected = "Ahmad Adel Gad's@Son";
+            Assert.Equal(expected, name2.ToInitialCaps());
+        }
+
+        [Fact]
+        public void ToInitialCapsNullOrEmpty()
+        {
+            string name = null;
+            var name2 = string.Empty;
+
+            Assert.Null(name.ToInitialCaps());
+            Assert.Equal(string.Empty, name2.ToInitialCaps());
+        }
+
+        [Fact]
+        public void ToInitialCapsOneChar()
+        {
+            var name = "j";
+            var name2 = "J";
+
+            var expected = "J";
+            var actual = name.ToInitialCaps();
+            Assert.True(actual.Equals(name2.ToInitialCaps()));
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ToInitialCapsOneCharNumber()
+        {
+            var name = "2";
+            var name2 = "2";
+
+            var expected = "2";
+            var actual = name.ToInitialCaps();
+            Assert.True(actual.Equals(name2.ToInitialCaps()));
+            Assert.Equal(expected, actual);
+        }
+
+
+        [Fact]
+        public void ToInitialCapsOneCharSpecial()
+        {
+            var name = "@";
+            var name2 = "@";
+
+            var expected = "@";
+            var actual = name.ToInitialCaps();
+            Assert.True(actual.Equals(name2.ToInitialCaps()));
+            Assert.Equal(expected, actual);
+        }
+        #endregion Quick Manipulation
     }
 }

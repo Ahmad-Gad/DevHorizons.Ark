@@ -62,5 +62,27 @@
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void CompareNullableSource()
+        {
+            string[]? source = null;
+            var value = new string[4] { "Jan", "Feb", "Mar", "April" };
+            var ex = Record.Exception(() => source.CompareTo(value));
+
+            Assert.NotNull(ex);
+            Assert.IsType<ArgumentNullException>(ex);
+        }
+
+        [Fact]
+        public void CompareNullableValue()
+        {
+            string[]? value = null;
+            var source = new string[4] { "Jan", "Feb", "Mar", "April" };
+            var ex = Record.Exception(() => source.CompareTo(value));
+
+            Assert.NotNull(ex);
+            Assert.IsType<ArgumentNullException>(ex);
+        }
     }
 }

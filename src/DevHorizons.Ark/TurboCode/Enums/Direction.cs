@@ -6,7 +6,7 @@
 //   Defines all possible directions for the engine to start processing a string by either manipulation or searching.
 // </summary>
 // <Created>
-//     <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+//     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
 //     <DateTime>24/08/2010  10:22 AM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ namespace DevHorizons.Ark
     ///     The start position of a specific string manipulation/search.
     /// </summary>
     /// <Created>
-    ///    <Author>Ahmad Adel Gad(ahmad.adel@devhorizons.com)</Author>
+    ///    <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
     ///    <DateTime>30/06/2012  04:23 PM</DateTime>
     /// </Created>
     public enum Direction
