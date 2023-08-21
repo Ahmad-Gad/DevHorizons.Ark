@@ -75,7 +75,7 @@
         #endregion Private Members
 
         [Fact]
-        public void TestIsCompositeTypeValue()
+        public void TestIsSimpleType()
         {
             var dateTime = DateTime.Now;
             var dateOnly = DateOnly.FromDateTime(dateTime);
@@ -136,6 +136,74 @@
             Assert.True(genericClass.IsCompositeType());
             list = null;
             var ex = Record.Exception(() => list.IsCompositeType());
+            Assert.NotNull(ex);
+            Assert.IsType<ArgumentNullException>(ex);
+        }
+
+        [Fact]
+        public void TestIsStruct()
+        {
+            var dateTime = DateTime.Now;
+            var dateOnly = DateOnly.FromDateTime(dateTime);
+            var doubleValue = 4.5D;
+            var floatValue = 4.5F;
+            var decimalValue = 4.5M;
+            var str = "Ahmad Gad";
+            var c = 'C';
+            var guid = Guid.NewGuid();
+            var color = Color.Red;
+            byte b = 3;
+            sbyte sb = -3;
+            int integer = 15061980;
+            ulong unsighnedLong = 353838489055;
+            long longDigit = 201002501021;
+
+            var employee = new Employee
+            {
+                Name = "Ahmad Gad",
+                DateOfBirth = DateOnly.Parse("1980-06-15")
+            };
+
+
+            var car = new Car();
+            var list = new List<int> { };
+            var array = new string[3];
+            var arrayList = new ArrayList();
+            var dic = new Dictionary<string, string>();
+            var hashTable = new Hashtable();
+            var hashSet = new HashSet<int>();
+            var genericClass = new GenericClass<int>();
+
+            Assert.False(dateTime.IsStruct());
+            Assert.False(dateOnly.IsStruct());
+            Assert.False(doubleValue.IsStruct());
+            Assert.False(floatValue.IsStruct());
+            Assert.False(decimalValue.IsStruct());
+            Assert.False(str.IsStruct());
+            Assert.False(c.IsStruct());
+            Assert.False(guid.IsStruct());
+            Assert.False(color.IsStruct());
+            Assert.False(b.IsStruct());
+            Assert.False(sb.IsStruct());
+            Assert.False(dateOnly.IsStruct());
+            Assert.False(integer.IsStruct());
+            Assert.False(unsighnedLong.IsStruct());
+            Assert.False(longDigit.IsStruct());
+
+
+            Assert.True(employee.IsStruct());
+
+            Assert.False(car.IsStruct());
+            Assert.False(list.IsStruct());
+            Assert.False(array.IsStruct());
+
+            Assert.False(arrayList.IsStruct());
+            Assert.False(dic.IsStruct());
+            Assert.False(hashTable.IsStruct());
+            Assert.False(hashSet.IsStruct());
+            Assert.False(genericClass.IsStruct());
+            list = null;
+            var ex = Record.Exception(() => list.IsStruct());
             Assert.NotNull(ex);
             Assert.IsType<ArgumentNullException>(ex);
         }
@@ -411,6 +479,192 @@
             list = null;
 
             var ex = Record.Exception(() => list.IsSingleConcreteClass());
+            Assert.NotNull(ex);
+            Assert.IsType<ArgumentNullException>(ex);
+        }
+
+        [Fact]
+        public void TestIsCollection()
+        {
+            var dateTime = DateTime.Now;
+            var dateOnly = DateOnly.FromDateTime(dateTime);
+            var doubleValue = 4.5D;
+            var floatValue = 4.5F;
+            var decimalValue = 4.5M;
+            var str = "Ahmad Gad";
+            var c = 'C';
+            var guid = Guid.NewGuid();
+            var color = Color.Red;
+            byte b = 3;
+            sbyte sb = -3;
+            int integer = 15061980;
+            ulong unsighnedLong = 353838489055;
+            long longDigit = 201002501021;
+
+            var employee = new Employee
+            {
+                Name = "Ahmad Gad",
+                DateOfBirth = DateOnly.Parse("1980-06-15")
+            };
+
+            var car = new Car();
+
+            var list = new List<int> { };
+            var array = new string[3];
+            var arrayList = new ArrayList();
+            var dic = new Dictionary<string, string>();
+            var hashTable = new Hashtable();
+            var hashSet = new HashSet<int>();
+            var genericClass = new GenericClass<int>();
+
+            Assert.False(dateTime.IsCollection());
+            Assert.False(dateOnly.IsCollection());
+            Assert.False(doubleValue.IsCollection());
+            Assert.False(floatValue.IsCollection());
+            Assert.False(decimalValue.IsCollection());
+            Assert.False(str.IsCollection());
+            Assert.False(c.IsCollection());
+            Assert.False(guid.IsCollection());
+            Assert.False(b.IsCollection());
+            Assert.False(sb.IsCollection());
+            Assert.False(dateOnly.IsCollection());
+            Assert.False(integer.IsCollection());
+            Assert.False(unsighnedLong.IsCollection());
+            Assert.False(longDigit.IsCollection());
+
+            Assert.False(color.IsCollection());
+
+
+            Assert.False(employee.IsCollection());
+            Assert.False(car.IsCollection());
+            Assert.False(genericClass.IsCollection());
+
+            Assert.True(list.IsCollection());
+            Assert.True(array.IsCollection());
+            Assert.True(arrayList.IsCollection());
+            Assert.True(dic.IsCollection());
+            Assert.True(hashTable.IsCollection());
+            Assert.False(hashSet.IsCollection());
+
+
+            list = null;
+
+            var ex = Record.Exception(() => list.IsCollection());
+            Assert.NotNull(ex);
+            Assert.IsType<ArgumentNullException>(ex);
+        }
+
+        [Fact]
+        public void TestIsGenericCollection()
+        {
+            var dateTime = DateTime.Now;
+            var dateOnly = DateOnly.FromDateTime(dateTime);
+            var doubleValue = 4.5D;
+            var floatValue = 4.5F;
+            var decimalValue = 4.5M;
+            var str = "Ahmad Gad";
+            var c = 'C';
+            var guid = Guid.NewGuid();
+            var color = Color.Red;
+            byte b = 3;
+            sbyte sb = -3;
+            int integer = 15061980;
+            ulong unsighnedLong = 353838489055;
+            long longDigit = 201002501021;
+
+            var employee = new Employee
+            {
+                Name = "Ahmad Gad",
+                DateOfBirth = DateOnly.Parse("1980-06-15")
+            };
+
+            var car = new Car();
+
+            var list = new List<int> { };
+            var array = new string[3];
+            var arrayList = new ArrayList();
+            var dic = new Dictionary<string, string>();
+            var hashTable = new Hashtable();
+            var hashSet = new HashSet<int>();
+            var genericClass = new GenericClass<int>();
+
+            Assert.False(dateTime.IsGenericCollection());
+            Assert.False(dateOnly.IsGenericCollection());
+            Assert.False(doubleValue.IsGenericCollection());
+            Assert.False(floatValue.IsGenericCollection());
+            Assert.False(decimalValue.IsGenericCollection());
+            Assert.False(str.IsGenericCollection());
+            Assert.False(c.IsGenericCollection());
+            Assert.False(guid.IsGenericCollection());
+            Assert.False(b.IsGenericCollection());
+            Assert.False(sb.IsGenericCollection());
+            Assert.False(dateOnly.IsGenericCollection());
+            Assert.False(integer.IsGenericCollection());
+            Assert.False(unsighnedLong.IsGenericCollection());
+            Assert.False(longDigit.IsGenericCollection());
+
+            Assert.False(color.IsGenericCollection());
+
+
+            Assert.False(employee.IsGenericCollection());
+            Assert.False(car.IsGenericCollection());
+            Assert.False(genericClass.IsGenericCollection());
+
+            Assert.True(list.IsGenericCollection());
+            Assert.True(array.IsGenericCollection());
+            Assert.False(arrayList.IsGenericCollection());
+            Assert.True(dic.IsGenericCollection());
+            Assert.False(hashTable.IsGenericCollection());
+            Assert.True(hashSet.IsGenericCollection());
+
+            list = null;
+
+            var ex = Record.Exception(() => list.IsGenericCollection());
+            Assert.NotNull(ex);
+            Assert.IsType<ArgumentNullException>(ex);
+        }
+
+        [Fact]
+        public void TestIsConcreteClassCollection()
+        {
+         
+            var list = new List<int> { };
+            var array = new string[3];
+            var arrayList = new ArrayList();
+            var dic = new Dictionary<string, string>();
+            var hashTable = new Hashtable();
+            var hashSet = new HashSet<int>();
+            var genericClass = new GenericClass<int>();
+
+            Assert.False(list.IsCollectionOfConcreteClass());
+            Assert.False(array.IsCollectionOfConcreteClass());
+
+            Assert.False(arrayList.IsCollectionOfConcreteClass());
+            Assert.False(dic.IsCollectionOfConcreteClass());
+            Assert.False(hashTable.IsCollectionOfConcreteClass());
+            Assert.False(hashSet.IsCollectionOfConcreteClass());
+
+
+            list = null;
+
+            var ex = Record.Exception(() => list.IsCollectionOfConcreteClass());
+            Assert.NotNull(ex);
+            Assert.IsType<ArgumentNullException>(ex);
+
+
+            var carList = new List<Car> { };
+            var carArray = new Car[3];
+            var hashSetCar = new HashSet<Car>();
+            var dicCar = new Dictionary<string, Car>();
+ 
+            Assert.True(carList.IsCollectionOfConcreteClass());
+            Assert.True(carArray.IsCollectionOfConcreteClass());
+            Assert.True(hashSetCar.IsCollectionOfConcreteClass());
+            Assert.False(dicCar.IsCollectionOfConcreteClass());
+
+            hashSetCar = null;
+
+            ex = Record.Exception(() => hashSetCar.IsCollectionOfConcreteClass());
             Assert.NotNull(ex);
             Assert.IsType<ArgumentNullException>(ex);
         }

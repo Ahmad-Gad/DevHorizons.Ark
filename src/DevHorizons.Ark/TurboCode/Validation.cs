@@ -1,17 +1,35 @@
-﻿namespace DevHorizons.Ark.TurboCode
-{
-    using System.Reflection;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Validation.cs" company="Dev. Horizons - http://www.devhorizons.com">
+//   Copyright (c) 2023 All Right Reserved
+// </copyright>
+// <summary>
+//     Defines all the needed extension methods required to validate the types or the values against certain types.
+// </summary>
+// <Created>
+//     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+//     <DateTime>18/08/2023 04:53 PM</DateTime>
+// </Created>
+// --------------------------------------------------------------------------------------------------------------------
 
+namespace DevHorizons.Ark.TurboCode
+{
+    /// <summary>
+    ///     Defines all the needed extension methods required to validate the types or the values against certain types.
+    /// </summary>
+    /// <Created>
+    ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+    ///     <DateTime>24/08/2022  10:11 PM</DateTime>
+    /// </Created>
     public static class Validation
     {
         /// <summary>
         ///   Determines whether the specified type is a simple single value based type including <see cref="string"/>, <see cref="Guid"/> and enum declared types.
         /// </summary>
         /// <param name="type">The type to be verified.</param>
-        /// <remarks>If null, will throuw exception.</remarks>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
-        ///   <c>true</c> if the specified value is a simple value type which should be stored only on the stack partion of the memory.
+        ///   <c>true</c> if the specified value is a simple value type which should be stored only on the stack partion of the memory; otherwise, <c>false</c>.
         /// </returns>
         /// <Created>
         ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
@@ -19,22 +37,22 @@
         /// </Created>
         public static bool IsSimpleType(this Type type)
         {
-            if (type == typeof(string) || type == typeof(Guid) || type == typeof(decimal) || type == typeof(DateTime) || type == typeof(DateOnly))
+            if (type == typeof(string) || type == typeof(Guid) || type == typeof(decimal) || type == typeof(DateTime) || type == typeof(DateOnly) || type.IsEnum)
             {
                 return true;
             }
 
-            return type.IsValueType && (type.IsEnum || type.IsPrimitive);
+            return type.IsValueType && type.IsPrimitive;
         }
 
         /// <summary>
         ///   Determines whether the specified value is a simple single value based type including <see cref="string"/>, <see cref="Guid"/> and enum declared types.
         /// </summary>
         /// <param name="value">The object to be verified.</param>
-        /// <remarks>If null, will throuw exception.</remarks>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
-        ///   <c>true</c> if the specified value is a simple value type which should be stored only on the stack partion of the memory.
+        ///   <c>true</c> if the specified value is a simple value type which should be stored only on the stack partion of the memory; otherwise, <c>false</c>.
         /// </returns>
         /// <Created>
         ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
@@ -49,6 +67,52 @@
 
             var type = value.GetType();
             return type.IsSimpleType();
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is a 'struct' type.
+        /// </summary>
+        /// <param name="type">The type to be verified.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified value is a struct; otherwise, <c>false</c>.
+        /// </returns>
+        /// <Created>
+        ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
+        ///    <DateTime>03/02/2022 10:00 PM</DateTime>
+        /// </Created>
+        public static bool IsStruct(this Type type)
+        {
+            if (type == typeof(string) || type == typeof(Guid) || type == typeof(decimal) || type == typeof(DateTime) || type == typeof(DateOnly) || type.IsEnum)
+            {
+                return false;
+            }
+
+            return type.IsValueType && !type.IsPrimitive;
+        }
+
+        /// <summary>
+        ///   Determines whether the specified value is a 'struct' type.
+        /// </summary>
+        /// <param name="value">The value to be verified.</param>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns>
+        ///   <c>true</c> if the specified value is a struct.
+        /// </returns>
+        /// <Created>
+        ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
+        ///    <DateTime>03/02/2022 10:00 PM</DateTime>
+        /// </Created>
+        public static bool IsStruct(this object value)
+        {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            var type = value.GetType();
+
+            return type.IsStruct();
         }
 
         /// <summary>
@@ -78,6 +142,7 @@
         ///    The object to be validated of being serialized into <c>Json or Xml</c> string.
         ///    <para>Accepted inputs: Classes, User Defined Strcutures, Arrays and Generic Collections.</para>
         /// </param>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if [is structured type] [the specified value]; otherwise, <c>false</c>.
@@ -115,6 +180,7 @@
         /// <param name="value">
         ///    The value to be validated of being a generic collection.
         /// </param>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if collection; otherwise, <c>false</c>.
@@ -135,11 +201,31 @@
         }
 
         /// <summary>
+        ///    Determines whether the specified type is a collection.
+        /// </summary>
+        /// <param name="type">
+        ///    The type to be validated of being a collection.
+        /// </param>
+        /// <returns>
+        ///   <c>true</c> if collection; otherwise, <c>false</c>.
+        /// </returns>
+        /// <Created>
+        ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
+        ///    <DateTime>03/02/2022 10:00 PM</DateTime>
+        /// </Created>
+        public static bool IsCollection(this Type type)
+        {
+
+            return type.GetInterfaces().Length != 0 && type.GetInterface((typeof(System.Collections.ICollection)).FullName) != null;
+        }
+
+        /// <summary>
         ///    Determines whether the specified value is a collection.
         /// </summary>
         /// <param name="value">
         ///    The value to be validated of being a collection.
         /// </param>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if collection; otherwise, <c>false</c>.
@@ -155,8 +241,7 @@
                 throw new ArgumentNullException(nameof(value));
             }
 
-            var type = value.GetType();
-            return type.IsCollection();
+            return value is System.Collections.ICollection;
         }
 
         /// <summary>
@@ -183,6 +268,7 @@
         /// <param name="value">
         ///    The object to be validated of being a collection.
         /// </param>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if collection; otherwise, <c>false</c>.
@@ -225,6 +311,7 @@
         /// <param name="value">
         ///    The object to be verified.
         /// </param>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if the specified object is an instance of a single class; otherwise, <c>false</c> (if collection, it will return false).
@@ -244,95 +331,12 @@
             return type.IsSingleConcreteClass();
         }
 
-        // --------------------------------------------------------------------------------------------------
-
-        /// <summary>
-        ///    Determines whether the specified property type is a concrete class which can be instantiated.
-        /// </summary>
-        /// <remarks>This could be single class or collection.</remarks>
-        /// <param name="prop">The propery to be verified.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified propery is a concrete class which can be instantiated (either single class or collection); otherwise, <c>false</c>.
-        /// </returns>
-        /// <Created>
-        ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
-        ///    <DateTime>03/02/2022 10:00 PM</DateTime>
-        /// </Created>
-        public static bool IsConcreteClass(this MemberInfo prop)
-        {
-            if (prop == null)
-            {
-                return false;
-            }
-
-            var type = prop.MemberType.GetType();
-
-            if (type.IsGenericType)
-            {
-                return type.GenericTypeArguments[0].IsSingleConcreteClass();
-            }
-            else if (type.HasElementType)
-            {
-                return type.GetElementType().IsSingleConcreteClass();
-            }
-
-            return type.IsClass && !type.IsAbstract && type != typeof(string);
-        }
-
-        /// <summary>
-        ///    Determines whether the specified type is a concrete class which can be instantiated.
-        /// </summary>
-        /// <remarks>This could be single class or collection.</remarks>
-        /// <param name="type">The type to be verified.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified type is a concrete class which can be instantiated (either single class or collection); otherwise, <c>false</c>.
-        /// </returns>
-        /// <Created>
-        ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
-        ///    <DateTime>03/02/2022 10:00 PM</DateTime>
-        /// </Created>
-        public static bool IsConcreteClass(this Type type)
-        {
-            if (type.IsGenericType)
-            {
-                return type.GenericTypeArguments[0].IsSingleConcreteClass();
-            }
-            else if (type.HasElementType)
-            {
-                return type.GetElementType().IsSingleConcreteClass();
-            }
-
-            return type.IsClass && !type.IsAbstract && type != typeof(string);
-        }
-
-        /// <summary>
-        ///    Determines whether the specified object is concrete class which can be instantiated.
-        /// </summary>
-        /// <remarks>This could be single class or collection.</remarks>
-        /// <param name="obj">The object to be verified.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified object is a concrete class which can be instantiated (either single class or collection); otherwise, <c>false</c>.
-        /// </returns>
-        /// <Created>
-        ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
-        ///    <DateTime>03/02/2022 10:00 PM</DateTime>
-        /// </Created>
-        public static bool IsConcreteClass(this object obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-
-            var type = obj.GetType();
-            return type.IsConcreteClass();
-        }
-
-
         /// <summary>
         ///    Determines whether the specified collection is a collection of concrete class which can be instantiated.
         /// </summary>
-        /// <param name="obj">The object to be verified.</param>
+        /// <param name="value">The object to be verified.</param>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if the specified object is a collection of concrete class which can be instantiated; otherwise, <c>false</c>.
         /// </returns>
@@ -340,45 +344,47 @@
         ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
         ///    <DateTime>03/02/2022 10:00 PM</DateTime>
         /// </Created>
-        public static bool IsConcreteClassCollection(this object obj)
+        public static bool IsCollectionOfConcreteClass(this System.Collections.ICollection value)
         {
-            if (obj == null)
+            if (value is null)
             {
-                return false;
+                throw new ArgumentNullException(nameof(value));
             }
 
-            if (obj is not System.Collections.ICollection)
+            var type = value.GetType();
+            if (type.HasElementType)
             {
-                return false;
+                return type.GetElementType().IsSingleConcreteClass();
+            }
+            else if (type.GenericTypeArguments.Length == 1)
+            {
+                return type.GenericTypeArguments[0].IsSingleConcreteClass();
             }
 
-            var type = obj.GetType();
-            if (type.IsGenericCollection())
-            {
-                return obj.GetType().GenericTypeArguments[0].IsSingleConcreteClass();
-            }
-            else
-            {
-                return obj.GetType().GetElementType().IsSingleConcreteClass();
-            }
+            return false;
         }
 
-
         /// <summary>
-        ///    Determines whether the specified type is a collection of concrete class which can be instantiated.
+        ///    Determines whether the specified collection is a collection of concrete class which can be instantiated.
         /// </summary>
-        /// <param name="type">The type to be verified.</param>
+        /// <param name="value">The object to be verified.</param>
+        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
-        ///   <c>true</c> if the specified type is a collection of concrete class which can be instantiated; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified object is a collection of concrete class which can be instantiated; otherwise, <c>false</c>.
         /// </returns>
         /// <Created>
         ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
         ///    <DateTime>03/02/2022 10:00 PM</DateTime>
         /// </Created>
-        public static bool IsConcreteClassCollection(this Type type)
+        public static bool IsCollectionOfConcreteClass<T>(this ISet<T> value)
         {
-            return type.IsGenericCollection() && type.GenericTypeArguments[0].IsSingleConcreteClass();
-        }
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
+            return value.GetType().GenericTypeArguments[0].IsSingleConcreteClass();
+        }
     }
 }
