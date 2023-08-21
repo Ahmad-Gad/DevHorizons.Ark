@@ -1,7 +1,6 @@
 ﻿namespace DevHorizons.Ark.Test
 {
-
-    using DevHorizons.Ark.TurboCode;
+    using DevHorizons.Ark.Validation;
     using System.Collections;
 
     public class ValidationTest
@@ -622,6 +621,141 @@
             var ex = Record.Exception(() => list.IsGenericCollection());
             Assert.NotNull(ex);
             Assert.IsType<ArgumentNullException>(ex);
+        }
+
+        [Fact]
+        public void TestIsCollectionOrGenericCollection()
+        {
+            var dateTime = DateTime.Now;
+            var dateOnly = DateOnly.FromDateTime(dateTime);
+            var doubleValue = 4.5D;
+            var floatValue = 4.5F;
+            var decimalValue = 4.5M;
+            var str = "Ahmad Gad";
+            var c = 'C';
+            var guid = Guid.NewGuid();
+            var color = Color.Red;
+            byte b = 3;
+            sbyte sb = -3;
+            int integer = 15061980;
+            ulong unsighnedLong = 353838489055;
+            long longDigit = 201002501021;
+
+            var employee = new Employee
+            {
+                Name = "Ahmad Gad",
+                DateOfBirth = DateOnly.Parse("1980-06-15")
+            };
+
+            var car = new Car();
+
+            var list = new List<int> { };
+            var array = new string[3];
+            var arrayList = new ArrayList();
+            var dic = new Dictionary<string, string>();
+            var hashTable = new Hashtable();
+            var hashSet = new HashSet<int>();
+            var genericClass = new GenericClass<int>();
+
+            Assert.False(dateTime.IsCollectionOrGenericCollection());
+            Assert.False(dateOnly.IsCollectionOrGenericCollection());
+            Assert.False(doubleValue.IsCollectionOrGenericCollection());
+            Assert.False(floatValue.IsCollectionOrGenericCollection());
+            Assert.False(decimalValue.IsCollectionOrGenericCollection());
+            Assert.False(str.IsCollectionOrGenericCollection());
+            Assert.False(c.IsCollectionOrGenericCollection());
+            Assert.False(guid.IsCollectionOrGenericCollection());
+            Assert.False(b.IsCollectionOrGenericCollection());
+            Assert.False(sb.IsCollectionOrGenericCollection());
+            Assert.False(dateOnly.IsCollectionOrGenericCollection());
+            Assert.False(integer.IsCollectionOrGenericCollection());
+            Assert.False(unsighnedLong.IsCollectionOrGenericCollection());
+            Assert.False(longDigit.IsCollectionOrGenericCollection());
+
+            Assert.False(color.IsCollectionOrGenericCollection());
+
+
+            Assert.False(employee.IsCollectionOrGenericCollection());
+            Assert.False(car.IsCollectionOrGenericCollection());
+            Assert.False(genericClass.IsCollectionOrGenericCollection());
+
+            Assert.True(list.IsCollectionOrGenericCollection());
+            Assert.True(array.IsCollectionOrGenericCollection());
+            Assert.True(arrayList.IsCollectionOrGenericCollection());
+            Assert.True(dic.IsCollectionOrGenericCollection());
+            Assert.True(hashTable.IsCollectionOrGenericCollection());
+            Assert.True(hashSet.IsCollectionOrGenericCollection());
+
+            list = null;
+
+            var ex = Record.Exception(() => list.IsCollectionOrGenericCollection());
+            Assert.NotNull(ex);
+            Assert.IsType<ArgumentNullException>(ex);
+        }
+
+
+        [Fact]
+        public void TestIsCollectionOrGenericCollectionType()
+        {
+            var dateTime = DateTime.Now;
+            var dateOnly = DateOnly.FromDateTime(dateTime);
+            var doubleValue = 4.5D;
+            var floatValue = 4.5F;
+            var decimalValue = 4.5M;
+            var str = "Ahmad Gad";
+            var c = 'C';
+            var guid = Guid.NewGuid();
+            var color = Color.Red;
+            byte b = 3;
+            sbyte sb = -3;
+            int integer = 15061980;
+            ulong unsighnedLong = 353838489055;
+            long longDigit = 201002501021;
+
+            var employee = new Employee
+            {
+                Name = "Ahmad Gad",
+                DateOfBirth = DateOnly.Parse("1980-06-15")
+            };
+
+            var car = new Car();
+
+            var list = new List<int> { };
+            var array = new string[3];
+            var arrayList = new ArrayList();
+            var dic = new Dictionary<string, string>();
+            var hashTable = new Hashtable();
+            var hashSet = new HashSet<int>();
+            var genericClass = new GenericClass<int>();
+
+            Assert.False(dateTime.GetType().IsCollectionOrGenericCollection());
+            Assert.False(dateOnly.GetType().IsCollectionOrGenericCollection());
+            Assert.False(doubleValue.GetType().IsCollectionOrGenericCollection());
+            Assert.False(floatValue.GetType().IsCollectionOrGenericCollection());
+            Assert.False(decimalValue.GetType().IsCollectionOrGenericCollection());
+            Assert.False(str.GetType().IsCollectionOrGenericCollection());
+            Assert.False(c.GetType().IsCollectionOrGenericCollection());
+            Assert.False(guid.GetType().IsCollectionOrGenericCollection());
+            Assert.False(b.GetType().IsCollectionOrGenericCollection());
+            Assert.False(sb.GetType().IsCollectionOrGenericCollection());
+            Assert.False(dateOnly.GetType().IsCollectionOrGenericCollection());
+            Assert.False(integer.GetType().IsCollectionOrGenericCollection());
+            Assert.False(unsighnedLong.GetType().IsCollectionOrGenericCollection());
+            Assert.False(longDigit.GetType().IsCollectionOrGenericCollection());
+
+            Assert.False(color.GetType().IsCollectionOrGenericCollection());
+
+
+            Assert.False(employee.GetType().IsCollectionOrGenericCollection());
+            Assert.False(car.GetType().IsCollectionOrGenericCollection());
+            Assert.False(genericClass.GetType().IsCollectionOrGenericCollection());
+
+            Assert.True(list.GetType().IsCollectionOrGenericCollection());
+            Assert.True(array.GetType().IsCollectionOrGenericCollection());
+            Assert.True(arrayList.GetType().IsCollectionOrGenericCollection());
+            Assert.True(dic.GetType().IsCollectionOrGenericCollection());
+            Assert.True(hashTable.GetType().IsCollectionOrGenericCollection());
+            Assert.True(hashSet.GetType().IsCollectionOrGenericCollection());
         }
 
         [Fact]

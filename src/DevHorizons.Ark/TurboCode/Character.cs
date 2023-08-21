@@ -10,7 +10,7 @@
 //     <DateTime>24/08/2010  10:22 AM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
-namespace DevHorizons.Ark
+namespace DevHorizons.Ark.TurboCode
 {
     /// <summary>
     ///     Defines all the needed characters members.
@@ -206,7 +206,7 @@ namespace DevHorizons.Ark
         }
 
         /// <summary>
-        ///     Gets the Colon (<![CDATA[;]]>).
+        ///     Gets the Semi-Colon (<![CDATA[;]]>).
         /// </summary>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
@@ -581,6 +581,126 @@ namespace DevHorizons.Ark
         }
 
         /// <summary>
+        ///     Gets the bullet character/symbol (<![CDATA[•]]>).
+        ///     <para>ASCII Code: 149</para>
+        ///     <para>HEX Code: 95</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>12/11/2012 02:34 PM</DateTime>
+        /// </Created>
+        public static char Bullet
+        {
+            get
+            {
+                return Convert.ToChar('\u2022');
+            }
+        }
+
+        /// <summary>
+        ///     Gets the broken bar (<![CDATA[¦]]>).
+        ///     <para>ASCII Code: 166</para>
+        ///     <para>HEX Code: A6</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>12/11/2012 02:34 PM</DateTime>
+        /// </Created>
+        public static char BrokenBar
+        {
+            get
+            {
+                return Convert.ToChar('\u00A6');
+            }
+        }
+
+        /// <summary>
+        ///     Gets the currency sign/symbol (<![CDATA[¤]]>).
+        ///     <para>ASCII Code: 164</para>
+        ///     <para>HEX Code: A4</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>24/08/2022 08:25 PM</DateTime>
+        /// </Created>
+        public static char CurrencySign
+        {
+            get
+            {
+                return Convert.ToChar('\u00A4');
+            }
+        }
+
+        /// <summary>
+        ///     Gets the trademark sign/symbol (<![CDATA[™]]>).
+        ///     <para>ASCII Code: 153</para>
+        ///     <para>HEX Code: 99</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>24/08/2022 08:25 PM</DateTime>
+        /// </Created>
+        public static char TrademarkSign
+        {
+            get
+            {
+                return Convert.ToChar('\u2122');
+            }
+        }
+
+        /// <summary>
+        ///     Gets the registered  sign/symbol (<![CDATA[®]]>).
+        ///     <para>ASCII Code: 174</para>
+        ///     <para>HEX Code: AE</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>24/08/2022 08:25 PM</DateTime>
+        /// </Created>
+        public static char RegisteredSign
+        {
+            get
+            {
+                return Convert.ToChar('\u00AE');
+            }
+        }
+
+
+        /// <summary>
+        ///     Gets the copyright sign/symbol (<![CDATA[©]]>).
+        ///     <para>ASCII Code: 169</para>
+        ///     <para>HEX Code: A9</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>24/08/2022 08:25 PM</DateTime>
+        /// </Created>
+        public static char CopyrightSign
+        {
+            get
+            {
+                return Convert.ToChar('\u00A9');
+            }
+        }
+
+        /// <summary>
+        ///     Gets the cent sign/symbol (<![CDATA[¢]]>).
+        ///     <para>ASCII Code: 162</para>
+        ///     <para>HEX Code: A2</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>24/08/2022 08:25 PM</DateTime>
+        /// </Created>
+        public static char CentSign
+        {
+            get
+            {
+                return Convert.ToChar('\u00A2');
+            }
+        }
+
+        /// <summary>
         ///     Gets the Euro sign/symbol (<![CDATA[€]]>).
         ///     <para>ASCII Code: 8364</para>
         ///     <para>HEX Code: 20AC</para>
@@ -596,44 +716,43 @@ namespace DevHorizons.Ark
                 return Convert.ToChar('\u20AC');
             }
         }
+
+        /// <summary>
+        ///     Gets the British pound sterling (GBP) sign/symbol (<![CDATA[£]]>).
+        ///     <para>ASCII Code: 163</para>
+        ///     <para>HEX Code: A3</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>24/08/2022 08:25 PM</DateTime>
+        /// </Created>
+        public static char BritishPoundSign
+        {
+            get
+            {
+                return Convert.ToChar('\u00A3');
+            }
+        }
+
+        /// <summary>
+        ///     Gets the yen sign/symbol (<![CDATA[¥]]>).
+        ///     <para>ASCII Code: 165</para>
+        ///     <para>HEX Code: A5</para>
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>24/08/2022 08:25 PM</DateTime>
+        /// </Created>
+        public static char YenSign
+        {
+            get
+            {
+                return Convert.ToChar('\u00A5');
+            }
+        }
         #endregion Public Properties
 
         #region Public Methods
-        #region Validation
-
-        /// <summary>
-        /// Determines whether the specified source is in lower case.
-        /// </summary>
-        /// <param name="source">The source character.</param>
-        /// <returns>
-        ///   <c>True</c> if the specified source is in lower case; otherwise, <c>false</c>.
-        /// </returns>
-        /// <Created>
-        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
-        ///     <DateTime>13/11/2012 01:57 PM</DateTime>
-        /// </Created>
-        public static bool IsLower(this char source)
-        {
-            return source == source.ToLower();
-        }
-
-        /// <summary>
-        /// Determines whether the specified source is in upper case.
-        /// </summary>
-        /// <param name="source">The source character.</param>
-        /// <returns>
-        ///   <c>True</c> if the specified source is in upper case; otherwise, <c>false</c>.
-        /// </returns>
-        /// <Created>
-        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
-        ///     <DateTime>13/11/2012 01:57 PM</DateTime>
-        /// </Created>
-        public static bool IsUpper(this char source)
-        {
-            return source == source.ToUpper();
-        }
-        #endregion Validation
-
         #region Convert
         /// <summary>
         ///      Converts to "char" from a valid "object".

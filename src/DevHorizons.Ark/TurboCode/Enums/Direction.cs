@@ -10,8 +10,7 @@
 //     <DateTime>24/08/2010  10:22 AM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace DevHorizons.Ark
+namespace DevHorizons.Ark.TurboCode
 {
     /// <summary>
     ///     The start position of a specific string manipulation/search.

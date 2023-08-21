@@ -10,7 +10,8 @@
 //     <DateTime>18/08/2023 04:53 PM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
-namespace DevHorizons.Ark.TurboCode
+
+namespace DevHorizons.Ark.Validation
 {
     /// <summary>
     ///     Defines all the needed extension methods required to validate the types or the values against certain types.
@@ -19,13 +20,15 @@ namespace DevHorizons.Ark.TurboCode
     ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
     ///     <DateTime>24/08/2022  10:11 PM</DateTime>
     /// </Created>
-    public static class Validation
+    public static class ClassTypeValidation
     {
         /// <summary>
         ///   Determines whether the specified type is a simple single value based type including <see cref="string"/>, <see cref="Guid"/> and enum declared types.
         /// </summary>
         /// <param name="type">The type to be verified.</param>
-        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
+        /// <remarks>
+        ///    User defined 'struct' types are excluded; which means, if the input value is a 'struct' type, the return value will be 'false'.
+        /// </remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if the specified value is a simple value type which should be stored only on the stack partion of the memory; otherwise, <c>false</c>.
@@ -48,7 +51,10 @@ namespace DevHorizons.Ark.TurboCode
         ///   Determines whether the specified value is a simple single value based type including <see cref="string"/>, <see cref="Guid"/> and enum declared types.
         /// </summary>
         /// <param name="value">The object to be verified.</param>
-        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
+        /// <remarks>
+        ///    Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.
+        ///    <para>User defined 'struct' types are excluded; which means, if the input value is a 'struct' type, the return value will be 'false'.</para>
+        /// </remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if the specified value is a simple value type which should be stored only on the stack partion of the memory; otherwise, <c>false</c>.
@@ -119,9 +125,8 @@ namespace DevHorizons.Ark.TurboCode
         /// </summary>
         /// <param name="type">
         ///    The type to be validated of being serialized into <c>Json or Xml</c> string.
-        ///    <para>Accepted inputs: Classes, User Defined Strcutures, Arrays and Generic Collections.</para>
+        ///    <para>Accepted inputs: Classes, User Defined Strcutures, Arrays, Collections and Generic Collections.</para>
         /// </param>
-        /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if [is structured type] [the specified value]; otherwise, <c>false</c>.
         /// </returns>
@@ -161,6 +166,7 @@ namespace DevHorizons.Ark.TurboCode
         /// <param name="type">
         ///    The type to be validated of being a generic collection.
         /// </param>
+        /// <remarks>The condition will be fulfilled if the type is implementing the '<see cref="ICollection{T}"/>' interface.</remarks>
         /// <returns>
         ///   <c>true</c> if collection; otherwise, <c>false</c>.
         /// </returns>
@@ -170,7 +176,12 @@ namespace DevHorizons.Ark.TurboCode
         /// </Created>
         public static bool IsGenericCollection(this Type type)
         {
-            return type.GetInterfaces().Length != 0 && type.GetInterface((typeof(ICollection<>)).FullName) != null;
+            if (!type.IsClass || type == typeof(string))
+            {
+                return false;
+            }
+
+            return type.GetInterfaces().Length != 0 && type.GetInterface(typeof(ICollection<>).FullName) != null;
         }
 
         /// <summary>
@@ -179,7 +190,10 @@ namespace DevHorizons.Ark.TurboCode
         /// <param name="value">
         ///    The value to be validated of being a generic collection.
         /// </param>
-        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
+        /// <remarks>
+        ///    Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.
+        ///    <para>The condition will be fulfilled if the input value's type is implementing the '<see cref="ICollection{T}"/>' interface.</para>
+        /// </remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if collection; otherwise, <c>false</c>.
@@ -205,6 +219,7 @@ namespace DevHorizons.Ark.TurboCode
         /// <param name="type">
         ///    The type to be validated of being a collection.
         /// </param>
+        /// <remarks>The condition will be fulfilled if the type is implementing the '<see cref="System.Collections.ICollection"/>' interface.</remarks>
         /// <returns>
         ///   <c>true</c> if collection; otherwise, <c>false</c>.
         /// </returns>
@@ -214,8 +229,12 @@ namespace DevHorizons.Ark.TurboCode
         /// </Created>
         public static bool IsCollection(this Type type)
         {
+            if (!type.IsClass || type == typeof(string))
+            {
+                return false;
+            }
 
-            return type.GetInterfaces().Length != 0 && type.GetInterface((typeof(System.Collections.ICollection)).FullName) != null;
+            return type.GetInterfaces().Length != 0 && type.GetInterface(typeof(System.Collections.ICollection).FullName) != null;
         }
 
         /// <summary>
@@ -224,7 +243,10 @@ namespace DevHorizons.Ark.TurboCode
         /// <param name="value">
         ///    The value to be validated of being a collection.
         /// </param>
-        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
+        /// <remarks>
+        ///    Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.
+        ///    <para>The condition will be fulfilled if the input value's type is implementing the '<see cref="System.Collections.ICollection"/>' interface.</para>
+        /// </remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if collection; otherwise, <c>false</c>.
@@ -249,8 +271,13 @@ namespace DevHorizons.Ark.TurboCode
         /// <param name="type">
         ///    The type to be validated of being a collection or generic collection.
         /// </param>
+        /// <remarks>
+        ///    The condition will be fulfilled if the input value's type is implementing either of the following two interfaces:
+        ///    <para><see cref="System.Collections.ICollection"/></para>
+        ///    <para><see cref="ICollection{T}"/></para>
+        /// </remarks>
         /// <returns>
-        ///   <c>true</c> if collection; otherwise, <c>false</c>.
+        ///   <c>true</c> if array, collection or generic collection; otherwise, <c>false</c>.
         /// </returns>
         /// <Created>
         ///    <Author>Ahmad Gad (ahmad.gad@DevHorizons.com)</Author>
@@ -258,7 +285,35 @@ namespace DevHorizons.Ark.TurboCode
         /// </Created>
         public static bool IsCollectionOrGenericCollection(this Type type)
         {
-            return type.IsCollection() || type.IsGenericCollection();
+            // return type.IsCollection() || type.IsGenericCollection();
+            if (!type.IsClass || type == typeof(string))
+            {
+                return false;
+            }
+
+            var interfaces = type.GetInterfaces();
+            if (interfaces.Length == 0)
+            {
+                return false;
+            }
+
+            var icolType = typeof(System.Collections.ICollection);
+            var igcolType = typeof(ICollection<>);
+
+            foreach (var iface in interfaces)
+            {
+                if (iface == icolType)
+                {
+                    return true;
+                }
+
+                if (iface.IsGenericType && iface.GetGenericTypeDefinition() == igcolType)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -267,7 +322,12 @@ namespace DevHorizons.Ark.TurboCode
         /// <param name="value">
         ///    The object to be validated of being a collection.
         /// </param>
-        /// <remarks>Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.</remarks>
+        /// <remarks>
+        ///    Will throw '<see cref="ArgumentNullException"/>' exception if the input value is null.
+        ///    The condition will be fulfilled if the input value's type is implementing either of the following two interfaces:
+        ///    <para><see cref="System.Collections.ICollection"/></para>
+        ///    <para><see cref="ICollection{T}"/></para>
+        /// </remarks>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>
         ///   <c>true</c> if collection; otherwise, <c>false</c>.
@@ -283,8 +343,13 @@ namespace DevHorizons.Ark.TurboCode
                 throw new ArgumentNullException(nameof(value));
             }
 
+            if (value is System.Collections.ICollection)
+            {
+                return true;
+            }
+
             var valueType = value.GetType();
-            return valueType.IsCollectionOrGenericCollection();
+            return valueType.IsGenericCollection();
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿namespace DevHorizons.Ark.Test
 {
+    using TurboCode;
+
     public class JCompareTest
     {
         [Fact]

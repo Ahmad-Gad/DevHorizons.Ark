@@ -1,5 +1,7 @@
 namespace DevHorizons.Ark.Test
 {
+    using Validation;
+    using TurboCode;
     public class CharacterTest
     {
         #region Character Properties
@@ -242,9 +244,64 @@ namespace DevHorizons.Ark.Test
         }
 
         [Fact]
+        public void BulletCharacterProperty()
+        {
+            Assert.Equal('•', Character.Bullet);
+        }
+
+        [Fact]
+        public void BrokenBarCharacterProperty()
+        {
+            Assert.Equal('¦', Character.BrokenBar);
+        }
+
+        [Fact]
+        public void CentSignCharacterProperty()
+        {
+            Assert.Equal('¢', Character.CentSign);
+        }
+
+        [Fact]
+        public void CurrencySignCharacterProperty()
+        {
+            Assert.Equal('¤', Character.CurrencySign);
+        }
+
+        [Fact]
+        public void TrademarkSignCharacterProperty()
+        {
+            Assert.Equal('™', Character.TrademarkSign);
+        }
+
+
+        [Fact]
+        public void RegisteredSignCharacterProperty()
+        {
+            Assert.Equal('®', Character.RegisteredSign);
+        }
+
+        [Fact]
+        public void CopyrightSignCharacterProperty()
+        {
+            Assert.Equal('©', Character.CopyrightSign);
+        }
+
+        [Fact]
         public void EuroSignCharacterProperty()
         {
             Assert.Equal('€', Character.EuroSign);
+        }
+
+        [Fact]
+        public void BritishPoundSignCharacterProperty()
+        {
+            Assert.Equal('£', Character.BritishPoundSign);
+        }
+
+        [Fact]
+        public void YenCharacterProperty()
+        {
+            Assert.Equal('¥', Character.YenSign);
         }
         #endregion Character Properties
 

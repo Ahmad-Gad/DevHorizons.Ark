@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="String.cs" company="Dev. Horizons - http://www.devhorizons.com">
+// <copyright file="JString.cs" company="Dev. Horizons - http://www.devhorizons.com">
 //   Copyright (c) 2012 All Right Reserved
 // </copyright>
 // <summary>
@@ -16,6 +16,8 @@ namespace DevHorizons.Ark
     using System.Globalization;
 
     using Exceptions;
+    using TurboCode;
+    using Validation;
 
     /// <summary>
     ///     Defines all the needed string's manipulation operations methods.
