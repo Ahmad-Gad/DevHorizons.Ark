@@ -357,10 +357,39 @@ namespace DevHorizons.Ark.Test
         [Fact]
         public void FromSingleCharacterDigitToChar()
         {
-            var source = 1;
-            var expected = '1';
+            var source = 9;
+            var expected = '\t';
             var actual = source.ToChar();
+            Console.WriteLine(actual);
+            Assert.Equal(expected, actual);
+        }
 
+        [Fact]
+        public void FromSingleCharacterDigitStringToChar()
+        {
+            var source = '9';
+            var expected = '9';
+            var actual = source.ToChar();
+            Console.WriteLine(actual);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ToCharBoolean()
+        {
+            var source = true;
+
+            var ex = Record.Exception(() => source.ToChar());
+            Assert.NotNull(ex);
+            Assert.IsType<InvalidCastException>(ex);
+        }
+
+        [Fact]
+        public void ToCharNull()
+        {
+            string source = null;
+            var expected = Character.Null;
+            var actual = source.ToChar();
             Assert.Equal(expected, actual);
         }
 
@@ -383,6 +412,16 @@ namespace DevHorizons.Ark.Test
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void ConvertFronDigitToChar()
+        {
+            var source = 65;
+            var expected = 'A';
+            var actual = source.ToChar();
+            Assert.Equal(expected, actual);
+        }
+
 
         [Fact]
         public void ToUpperCaseCharcter()

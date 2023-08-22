@@ -3,7 +3,7 @@
     using DevHorizons.Ark.Validation;
     using System.Collections;
 
-    public class ValidationTest
+    public class ClassTypeValidationTest
     {
         #region Private Members
         enum Color

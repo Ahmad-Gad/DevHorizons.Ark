@@ -758,6 +758,7 @@ namespace DevHorizons.Ark.TurboCode
         ///      Converts to "char" from a valid "object".
         /// </summary>
         /// <param name="source">The source object to be converted.</param>
+        /// <exception cref="InvalidCastException"/>
         /// <returns>Valid "char" value</returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
@@ -765,7 +766,7 @@ namespace DevHorizons.Ark.TurboCode
         /// </Created>
         public static char ToChar(this object source)
         {
-            return Convert.ToChar(source.ToString());
+            return Convert.ToChar(source);
         }
 
         /// <summary>
@@ -803,6 +804,7 @@ namespace DevHorizons.Ark.TurboCode
         {
             return Convert.ToInt32(source);
         }
+
         /// <summary>
         ///     Converts a character to the upper case.
         /// </summary>

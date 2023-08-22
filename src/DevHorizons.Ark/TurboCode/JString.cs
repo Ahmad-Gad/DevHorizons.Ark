@@ -81,7 +81,7 @@ namespace DevHorizons.Ark
         #region Public Extension Methods
         #region Convert
         /// <summary>
-        /// Converts to String from a valid object.
+        ///    Converts to String from a valid object.
         /// </summary>
         /// <param name="source">The source object to be converted.</param>
         /// <returns>Valid safe-type String</returns>
