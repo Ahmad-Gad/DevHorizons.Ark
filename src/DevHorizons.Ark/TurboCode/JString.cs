@@ -2822,28 +2822,7 @@ namespace DevHorizons.Ark.TurboCode
         #endregion SplitCut
         #endregion Split
 
-        #region Slice
-        /// <summary>
-        ///    Slices the specified source.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        /// <param name="startPosition">The first index position to slice.</param>
-        /// <param name="endPosition">The last index position to slice.</param>
-        /// <returns>A slice of string which has specific start index and specific end index within the string length.</returns>
-        /// <Created>
-        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
-        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
-        /// </Created>
-        public static string Slice(this string source, int startPosition, int endPosition)
-        {
-            if (startPosition < 0 || startPosition >= source.Length || endPosition < startPosition || endPosition >= source.Length)
-            {
-                return null;
-            }
 
-            return source.Substring(startPosition, endPosition - startPosition + 1);
-        }
-        #endregion  Slice
 
         #region Replace
         #region Single Replace
@@ -3428,125 +3407,7 @@ namespace DevHorizons.Ark.TurboCode
         #endregion Multiple Replace Using Dictionary
         #endregion Replace
 
-        #region Quick Manipulation
-        /// <summary>
-        ///     Gets part of a string from the left position of a specific string based on the mentioned length.
-        /// </summary>
-        /// <param name="source">The source string.</param>
-        /// <param name="length">The length (count) of characters to capture.</param>
-        /// <returns>The left part of string based on the mentioned length.</returns>
-        /// <Created>
-        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
-        ///     <DateTime>01/07/2012  05:17 PM</DateTime>
-        /// </Created>
-        public static string Left(this string source, int length)
-        {
-            if (length > source.Length)
-            {
-                return null;
-            }
-
-            return source.Substring(0, length);
-        }
-
-        /// <summary>
-        ///     Gets part of a string from the right position of a specific string based on the mentioned length.
-        /// </summary>
-        /// <param name="source">The source string.</param>
-        /// <param name="length">The length (count) of characters to capture.</param>
-        /// <returns>The right part of string based on the mentioned length.</returns>
-        /// <Created>
-        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
-        ///     <DateTime>01/07/2012  05:17 PM</DateTime>
-        /// </Created>
-        public static string Right(this string source, int length)
-        {
-            if (length > source.Length)
-            {
-                return null;
-            }
-
-            return source.Substring(source.Length - length);
-        }
-
-        /// <summary>
-        /// To the initial caps.
-        /// </summary>
-        /// <param name="source">The source string.</param>
-        /// <returns>String with initial caps characters.</returns>
-        /// <Created>
-        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
-        ///     <DateTime>13/11/2012 02:04 PM</DateTime>
-        /// </Created>
-        public static string ToInitialCaps(this string source)
-        {
-            if (source == null)
-            {
-                return null;
-            }
-
-            if (source == string.Empty)
-            {
-                return string.Empty;
-            }
-
-            source = source.ToLowerInvariant();
-            var newString = source[0].ToUpper().ToString();
-
-            if (source.Length == 1)
-            {
-                return newString;
-            }
-
-            for (int i = 1; i < source.Length; i++)
-            {
-                var ascii = source[i - 1];
-
-                if (!((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122) || (ascii >= 48 && ascii <= 57) || ascii == 39))
-                {
-                    newString += source[i].ToUpper();
-                }
-                else
-                {
-                    newString += source[i];
-                }
-            }
-
-            return newString;
-        }
-
-        /// <summary>
-        /// To a string's characters cases reverted, from upper to lower, and from lower to upper.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        /// <returns>The string's characters cases reverted, from upper to lower, and from lower to upper.</returns>
-        /// <Created>
-        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
-        ///     <DateTime>13/11/2012 02:07 PM</DateTime>
-        /// </Created>
-        public static string ToRevertedCase(this string source)
-        {
-            if (source == null)
-            {
-                return null;
-            }
-
-            if (source == string.Empty)
-            {
-                return string.Empty;
-            }
-
-            var newString = string.Empty;
-
-            foreach (char chr in source)
-            {
-                var newChar = chr.IsLower() ? chr.ToUpper() : chr.ToLower();
-                newString += newChar;
-            }
-
-            return newString;
-        }
-        #endregion Quick Manipulation
+   
 
         #region Trim
         /*

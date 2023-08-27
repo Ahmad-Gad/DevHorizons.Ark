@@ -100,6 +100,10 @@ namespace DevHorizons.Ark.TurboCode
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
         /// </remarks>
         /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        /// </Created>
         public static List<string> JSplit(this string source, char delimiter, int start, bool matchCase = true, CultureInfo culture = null)
         {
             if (source == null)
@@ -131,7 +135,7 @@ namespace DevHorizons.Ark.TurboCode
         ///    The last index in the specified 'source' string, where the split operation should stop.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
-        ///    <para>Cannot be equal or less than the 'start' value.</para>
+        ///    <para>Cannot less than the 'start' value.</para>
         /// </param>
         /// <param name="matchCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.

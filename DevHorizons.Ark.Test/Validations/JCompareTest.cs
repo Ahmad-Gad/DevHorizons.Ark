@@ -21,7 +21,7 @@
         public void CompareMatchingStringList02ToArray()
         {
             var source = new List<string> { string.Empty, "\r", "\n", "\t", "\r\n" };
-            var value = new string[5] { "", Character.Lf.ToString(), Character.Cr.ToString(), Character.HorizontalTab.ToString(), JString.CrLf };
+            var value = new string[5] { "", Character.Cr.ToString(), Character.Lf.ToString(), Character.HorizontalTab.ToString(), JString.CrLf };
 
             var expected = true;
             var actual = source.CompareTo(value);

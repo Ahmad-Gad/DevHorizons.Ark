@@ -139,7 +139,7 @@ namespace DevHorizons.Ark.TurboCode
         ///    The last index in the specified 'source' string, where the split operation should stop.
         ///    <para>Cannot be less than zero, unless the delimiter is just one character.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source', unless the delimiter is just one character.</para>
-        ///    <para>Cannot be equal or less than the 'start' value, unless the delimiter is just one character.</para>
+        ///    <para>Cannot be equal or less than the 'start' value, unless the delimiter is just one character, then it would be acceptable to be equal to the 'start' value.</para>
         /// </param>
         /// <param name="matchCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.

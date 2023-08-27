@@ -48,7 +48,7 @@
         }
 
         [Fact]
-        public void TestSplitWithEmptyExceptionSource()
+        public void TestSplitWithEmptyStringExceptionSource()
         {
             string source = string.Empty;
             var ex = Record.Exception(() => source.JSplit(string.Empty));

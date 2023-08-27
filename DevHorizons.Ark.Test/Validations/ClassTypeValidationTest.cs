@@ -24,7 +24,7 @@
             var str = "Ahmad Gad";
             var c = 'C';
             var guid = Guid.NewGuid();
-            var color = Color.Red; 
+            var color = Color.Red;
             byte b = 3;
             sbyte sb = -3;
             int integer = 15061980;
@@ -38,7 +38,7 @@
             };
 
             var car = new Car();
-            var list = new List<int>{ };
+            var list = new List<int> { };
             var array = new string[3];
             var arrayList = new ArrayList();
             var dic = new Dictionary<string, string>();
@@ -206,7 +206,7 @@
             Assert.True(dic.GetType().IsCompositeType());
             Assert.True(hashTable.GetType().IsCompositeType());
             Assert.True(hashSet.GetType().IsCompositeType());
-            Assert.True(genericClass.GetType().IsCompositeType());    
+            Assert.True(genericClass.GetType().IsCompositeType());
         }
 
 
@@ -263,7 +263,7 @@
 
             Assert.False(employee.IsCollectionOrGenericCollection());
             Assert.False(car.IsCollectionOrGenericCollection());
-            Assert.False(this.TestGeneric<DateTime>(dateTime));
+            Assert.False(TestGeneric(dateTime));
             Assert.False(genericClass.IsCollectionOrGenericCollection());
 
             Assert.True(list.IsCollectionOrGenericCollection());
@@ -343,7 +343,7 @@
             Assert.False(hashTable.IsSimpleType());
             Assert.False(hashSet.IsSimpleType());
 
-           
+
             list = null;
 
             var ex = Record.Exception(() => list.IsSimpleType());
@@ -765,7 +765,7 @@
         [Fact]
         public void TestIsConcreteClassCollection()
         {
-         
+
             var list = new List<int> { };
             var array = new string[3];
             var arrayList = new ArrayList();
@@ -794,7 +794,7 @@
             var carArray = new Car[3];
             var hashSetCar = new HashSet<Car>();
             var dicCar = new Dictionary<string, Car>();
- 
+
             Assert.True(carList.IsCollectionOfConcreteClass());
             Assert.True(carArray.IsCollectionOfConcreteClass());
             Assert.True(hashSetCar.IsCollectionOfConcreteClass());

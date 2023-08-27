@@ -22,6 +22,21 @@ namespace DevHorizons.Ark.TurboCode
     public static partial class JString
     {
         /// <summary>
+        ///    Gets a null value string.
+        /// </summary>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>13/11/2012 01:02 PM</DateTime>
+        /// </Created>
+        public static string Null
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Gets the Carriage Return.
         /// </summary>
         /// <Created>
@@ -32,9 +47,7 @@ namespace DevHorizons.Ark.TurboCode
         {
             get
             {
-                /// var crlfChars = new char[2] { Character.Lf, Character.Cr };
-                /// var crlfString = new string(crlfChars);
-                var crlfString = string.Empty + Character.Lf + Character.Cr;
+                var crlfString = string.Empty + Character.Cr + Character.Lf;
                 return crlfString;
             }
         }

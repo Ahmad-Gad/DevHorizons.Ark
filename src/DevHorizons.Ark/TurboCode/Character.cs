@@ -56,8 +56,8 @@ namespace DevHorizons.Ark.TurboCode
         }
 
         /// <summary>
-        ///    Gets the Carriage Return (<![CDATA["\n"]]>).
-        ///    <para>ASCII Code: 10</para>
+        ///    Gets the Carriage Return (<![CDATA["\r"]]>).
+        ///    <para>ASCII Code: 13</para>
         /// </summary>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
@@ -67,13 +67,13 @@ namespace DevHorizons.Ark.TurboCode
         {
             get
             {
-                return Convert.ToChar(10);
+                return Convert.ToChar(13);
             }
         }
 
         /// <summary>
-        ///    Gets the Line Feed (<![CDATA[\r]]>).
-        ///    <para>ASCII Code: 13</para>
+        ///    Gets the Line Feed (<![CDATA[\n]]>).
+        ///    <para>ASCII Code: 10</para>
         /// </summary>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
@@ -83,7 +83,7 @@ namespace DevHorizons.Ark.TurboCode
         {
             get
             {
-                return Convert.ToChar(13);
+                return Convert.ToChar(10);
             }
         }
 

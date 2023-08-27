@@ -1,12 +1,9 @@
-namespace DevHorizons.Ark.Test
+namespace DevHorizons.Ark.Test.Characters
 {
-    using System.Globalization;
-    using Validation;
     using TurboCode;
-    
-    public class CharacterTest
+
+    public class CharacterPropertiesTest
     {
-        #region Character Properties
         [Fact]
         public void NullCharacterProperty()
         {
@@ -34,15 +31,17 @@ namespace DevHorizons.Ark.Test
         [Fact]
         public void CrCharacterProperty()
         {
-            Assert.Equal(Convert.ToChar(10), Character.Cr);
-            Assert.Equal("\n", Character.Cr.ToString());
+            Assert.Equal(Convert.ToChar(13), Character.Cr);
+            Assert.Equal(Convert.ToChar(13), Convert.ToChar('\r'));
+            Assert.Equal("\r", Character.Cr.ToString());
         }
 
         [Fact]
         public void LfCharacterProperty()
         {
-            Assert.Equal(Convert.ToChar(13), Character.Lf);
-            Assert.Equal("\r", Character.Lf.ToString());
+            Assert.Equal(Convert.ToChar(10), Character.Lf);
+            Assert.Equal(Convert.ToChar(10), Convert.ToChar('\n'));
+            Assert.Equal("\n", Character.Lf.ToString());
         }
 
         [Fact]
@@ -305,205 +304,5 @@ namespace DevHorizons.Ark.Test
         {
             Assert.Equal('¥', Character.YenSign);
         }
-        #endregion Character Properties
-
-        #region Validation
-        [Fact]
-        public void IsUpperCaseCharcterTrue()
-        {
-            var source = 'A';
-            var expected = true;
-            var actual = source.IsUpper();
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void IsUpperCaseCharcterFalse()
-        {
-            var source = 'a';
-            var expected = false;
-            var actual = source.IsUpper();
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void IsLowerCaseCharcterTrue()
-        {
-            var source = 'a';
-            var expected = true;
-            var actual = source.IsLower();
-            Assert.Equal(expected, actual);
-
-            actual = source.IsLower(CultureInfo.InvariantCulture);
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void IsLowerCaseCharcterFalse()
-        {
-            var source = 'A';
-            var expected = false;
-            var actual = source.IsLower();
-            Assert.Equal(expected, actual);
-
-            actual = source.IsLower(CultureInfo.InvariantCulture);
-            Assert.Equal(expected, actual);
-        }
-        #endregion Validation
-
-        #region Convert
-        [Fact]
-        public void FromSingleCharacterStringToChar()
-        {
-            var source = "A";
-            var expected = 'A';
-            var actual = source.ToChar();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void FromSingleCharacterDigitToChar()
-        {
-            var source = 9;
-            var expected = '\t';
-            var actual = source.ToChar();
-            Console.WriteLine(actual);
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void FromSingleCharacterDigitStringToChar()
-        {
-            var source = '9';
-            var expected = '9';
-            var actual = source.ToChar();
-            Console.WriteLine(actual);
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ToCharBoolean()
-        {
-            var source = true;
-
-            var ex = Record.Exception(() => source.ToChar());
-            Assert.NotNull(ex);
-            Assert.IsType<InvalidCastException>(ex);
-        }
-
-        [Fact]
-        public void ToCharNull()
-        {
-            string source = null;
-            var expected = Character.Null;
-            var actual = source.ToChar();
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ToCharDefaultValue()
-        {
-            var source = true;
-            var expected = Character.Null;
-            var actual = source.ToChar(Character.Null);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ToCharDefaultValueOptional()
-        {
-            var source = 'A';
-            var expected = 'A';
-            var actual = source.ToChar(Character.Null);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void GetAsciiCode()
-        {
-            var source = 'A';
-            var expected = 65;
-            var actual = source.GetAsciiCode();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ConvertFromDigitToChar()
-        {
-            var source = 65;
-            var expected = 'A';
-            var actual = source.ToChar();
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void TestToCharString()
-        {
-            var source = 65;
-
-            var ex = Record.Exception(() => source.ToCharString());
-            Assert.NotNull(ex);
-            Assert.IsType<FormatException>(ex);
-        }
-
-
-        [Fact]
-        public void TestToCharStringFromDigit()
-        {
-            var source = 9;
-
-            var expected = '9';
-            var actual = source.ToCharString();
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void TestToCharStringDefaultValue()
-        {
-            var source = 65;
-
-            var expected = 'A';
-            var actual = source.ToCharString('A');
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ToCharStringDefaultValueOptional()
-        {
-            var source = 'A';
-            var expected = 'A';
-            var actual = source.ToCharString(Character.Null);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ToUpperCaseCharcter()
-        {
-            var source = 'a';
-            var expected = 'A';
-            var actual = source.ToUpper();
-            Assert.Equal(expected, actual);
-
-            actual = source.ToUpper(CultureInfo.InvariantCulture);
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ToLowerCaseCharcter()
-        {
-            var source = 'A';
-            var expected = 'a';
-            var actual = source.ToLower();
-            Assert.Equal(expected, actual);
-
-            actual = source.ToLower(CultureInfo.InvariantCulture);
-            Assert.Equal(expected, actual);
-        }
-        #endregion Convert
     }
 }
