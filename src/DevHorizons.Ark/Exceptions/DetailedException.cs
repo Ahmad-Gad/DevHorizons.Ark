@@ -51,7 +51,6 @@ namespace DevHorizons.Ark.Exceptions
         }
 
 
-
         /// <summary>
         ///    The exception's code.
         /// </summary>

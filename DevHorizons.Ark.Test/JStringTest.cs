@@ -1,5 +1,9 @@
 ﻿namespace DevHorizons.Ark.Test
 {
+    using System.Globalization;
+    using TurboCode;
+    using Validation;
+
     public class JStringTest
     {
         #region String Properties
@@ -48,6 +52,9 @@
             var expected = true;
             var actual = source.IsLower();
             Assert.Equal(expected, actual);
+
+            actual = source.IsLower(CultureInfo.InvariantCulture);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -56,6 +63,9 @@
             var source = "Ahmad Gad";
             var expected = false;
             var actual = source.IsLower();
+            Assert.Equal(expected, actual);
+
+            actual = source.IsLower(CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
         #endregion Validation
@@ -66,7 +76,7 @@
         {
             var source = "Ahmad Gad";
             var expected = "Ahmad Gad";
-            var actual = source.ToSafeString();
+            var actual = source.ToStringOrEmptyString();
             Assert.Equal(expected, actual);
         }
 
@@ -75,7 +85,7 @@
         {
             var source = default(string);
             var expected = string.Empty;
-            var actual = source.ToSafeString();
+            var actual = source.ToStringOrEmptyString();
             Assert.Equal(expected, actual);
         }
 
@@ -93,7 +103,7 @@
         {
             var source = true;
             var expected = "True";
-            var actual = source.ToSafeString();
+            var actual = source.ToStringOrEmptyString();
             Assert.Equal(expected, actual);
         }
 
@@ -103,7 +113,7 @@
         {
             var source = false;
             var expected = "False";
-            var actual = source.ToSafeString();
+            var actual = source.ToStringOrEmptyString();
             Assert.Equal(expected, actual);
         }
 

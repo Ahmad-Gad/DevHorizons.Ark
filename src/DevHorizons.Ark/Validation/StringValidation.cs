@@ -12,12 +12,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace DevHorizons.Ark.Validation
 {
-    using System.Diagnostics;
     using System.Globalization;
-
-    using Exceptions;
-    using TurboCode;
-    using Validation;
 
     /// <summary>
     ///     Defines all the needed string's manipulation operations methods.
@@ -30,9 +25,13 @@ namespace DevHorizons.Ark.Validation
     {
 
         /// <summary>
-        ///    Determines whether the specified source is in lower case.
+        /// Determines whether the specified source is in lower case.
         /// </summary>
         /// <param name="source">The source string.</param>
+        /// <param name="culture">
+        ///     Optional: The locale culture.
+        ///     <para>The Default Value: <see cref="CultureInfo.InvariantCulture"/>.</para>
+        /// </param>
         /// <returns>
         ///   <c>True</c> if the specified source is in lower case; otherwise, <c>false</c>.
         /// </returns>
@@ -40,15 +39,24 @@ namespace DevHorizons.Ark.Validation
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:57 PM</DateTime>
         /// </Created>
-        public static bool IsLower(this string source)
+        public static bool IsLower(this string source, CultureInfo culture = null)
         {
-            return source == source.ToLowerInvariant();
+            if (culture == null)
+            {
+                culture = CultureInfo.InvariantCulture;
+            }
+
+            return source == source.ToLower(culture);
         }
 
         /// <summary>
-        ///    Determines whether the specified source is in upper case.
+        /// Determines whether the specified source is in upper case.
         /// </summary>
         /// <param name="source">The source string.</param>
+        /// <param name="culture">
+        ///     Optional: The locale culture.
+        ///     <para>The Default Value: <see cref="CultureInfo.InvariantCulture"/>.</para>
+        /// </param>
         /// <returns>
         ///   <c>True</c> if the specified source is in upper case; otherwise, <c>false</c>.
         /// </returns>
@@ -56,10 +64,15 @@ namespace DevHorizons.Ark.Validation
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:57 PM</DateTime>
         /// </Created>
-        public static bool IsUpper(this string source)
+        public static bool IsUpper(this string source, CultureInfo culture = null)
         {
-            return source == source.ToUpperInvariant();
+            if (culture == null)
+            {
+                culture = CultureInfo.InvariantCulture;
+            }
+
+            return source == source.ToUpper(culture);
         }
-      
+
     }
 }

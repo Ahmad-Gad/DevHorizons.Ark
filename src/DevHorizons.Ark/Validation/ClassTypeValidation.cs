@@ -285,7 +285,6 @@ namespace DevHorizons.Ark.Validation
         /// </Created>
         public static bool IsCollectionOrGenericCollection(this Type type)
         {
-            // return type.IsCollection() || type.IsGenericCollection();
             if (!type.IsClass || type == typeof(string))
             {
                 return false;

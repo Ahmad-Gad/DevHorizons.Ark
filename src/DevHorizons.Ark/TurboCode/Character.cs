@@ -12,6 +12,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace DevHorizons.Ark.TurboCode
 {
+    using System.Globalization;
+
     /// <summary>
     ///     Defines all the needed characters members.
     /// </summary>
@@ -773,13 +775,50 @@ namespace DevHorizons.Ark.TurboCode
         ///      Converts to "char" from a valid "object".
         /// </summary>
         /// <param name="source">The source object to be converted.</param>
-        /// <param name="defaultValue">The default return (replacement) value in case if the conversion operation failed.</param>
+        /// <param name="defaultValue">The default return (failover) value in case if the conversion operation failed.</param>
         /// <returns>Valid "char" value</returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>30/06/2012  05:55 PM</DateTime>
         /// </Created>
         public static char ToChar(this object source, char defaultValue)
+        {
+            try
+            {
+                return Convert.ToChar(source);
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
+
+        /// <summary>
+        ///      Converts to "char" from a valid "object" after converting it to a string.
+        /// </summary>
+        /// <param name="source">The source object to be converted.</param>
+        /// <exception cref="InvalidCastException"/>
+        /// <returns>Valid "char" value</returns>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>30/06/2012  05:55 PM</DateTime>
+        /// </Created>
+        public static char ToCharString(this object source)
+        {
+            return Convert.ToChar(source.ToString());
+        }
+
+        /// <summary>
+        ///      Converts to "char" from a valid "object" after converting it to a string.
+        /// </summary>
+        /// <param name="source">The source object to be converted.</param>
+        /// <param name="defaultValue">The default return (failover) value in case if the conversion operation failed.</param>
+        /// <returns>Valid "char" value</returns>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>30/06/2012  05:55 PM</DateTime>
+        /// </Created>
+        public static char ToCharString(this object source, char defaultValue)
         {
             try
             {
@@ -809,28 +848,46 @@ namespace DevHorizons.Ark.TurboCode
         ///     Converts a character to the upper case.
         /// </summary>
         /// <param name="source">The source character.</param>
+        /// <param name="culture">
+        ///     Optional: The locale culture.
+        ///     <para>The Default Value: <see cref="CultureInfo.InvariantCulture"/>.</para>
+        /// </param>
         /// <returns>Character with upper case.</returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>20/10/2012 01:32 PM</DateTime>
         /// </Created>
-        public static char ToUpper(this char source)
+        public static char ToUpper(this char source, CultureInfo culture = null)
         {
-            return Convert.ToChar(source.ToString().ToUpperInvariant());
+            if (culture == null)
+            {
+                culture = CultureInfo.InvariantCulture;
+            }
+
+            return Convert.ToChar(source.ToString().ToUpper(culture));
         }
 
         /// <summary>
         ///     Converts a character to the lower case.
         /// </summary>
         /// <param name="source">The source character.</param>
+        /// <param name="culture">
+        ///     Optional: The locale culture.
+        ///     <para>The Default Value: <see cref="CultureInfo.InvariantCulture"/>.</para>
+        /// </param>
         /// <returns>Character with lowered case.</returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>20/10/2012 01:32 PM</DateTime>
         /// </Created>
-        public static char ToLower(this char source)
+        public static char ToLower(this char source, CultureInfo culture = null)
         {
-            return Convert.ToChar(source.ToString().ToLowerInvariant());
+            if (culture == null)
+            {
+                culture = CultureInfo.InvariantCulture;
+            }
+
+            return Convert.ToChar(source.ToString().ToLower(culture));
         }
         #endregion Convert
         #endregion Public Methods

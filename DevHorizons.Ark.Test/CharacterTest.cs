@@ -1,7 +1,9 @@
 namespace DevHorizons.Ark.Test
 {
+    using System.Globalization;
     using Validation;
     using TurboCode;
+    
     public class CharacterTest
     {
         #region Character Properties
@@ -331,6 +333,9 @@ namespace DevHorizons.Ark.Test
             var expected = true;
             var actual = source.IsLower();
             Assert.Equal(expected, actual);
+
+            actual = source.IsLower(CultureInfo.InvariantCulture);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -339,6 +344,9 @@ namespace DevHorizons.Ark.Test
             var source = 'A';
             var expected = false;
             var actual = source.IsLower();
+            Assert.Equal(expected, actual);
+
+            actual = source.IsLower(CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
         #endregion Validation
@@ -404,6 +412,16 @@ namespace DevHorizons.Ark.Test
         }
 
         [Fact]
+        public void ToCharDefaultValueOptional()
+        {
+            var source = 'A';
+            var expected = 'A';
+            var actual = source.ToChar(Character.Null);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void GetAsciiCode()
         {
             var source = 'A';
@@ -414,7 +432,7 @@ namespace DevHorizons.Ark.Test
         }
 
         [Fact]
-        public void ConvertFronDigitToChar()
+        public void ConvertFromDigitToChar()
         {
             var source = 65;
             var expected = 'A';
@@ -422,6 +440,46 @@ namespace DevHorizons.Ark.Test
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void TestToCharString()
+        {
+            var source = 65;
+
+            var ex = Record.Exception(() => source.ToCharString());
+            Assert.NotNull(ex);
+            Assert.IsType<FormatException>(ex);
+        }
+
+
+        [Fact]
+        public void TestToCharStringFromDigit()
+        {
+            var source = 9;
+
+            var expected = '9';
+            var actual = source.ToCharString();
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TestToCharStringDefaultValue()
+        {
+            var source = 65;
+
+            var expected = 'A';
+            var actual = source.ToCharString('A');
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ToCharStringDefaultValueOptional()
+        {
+            var source = 'A';
+            var expected = 'A';
+            var actual = source.ToCharString(Character.Null);
+
+            Assert.Equal(expected, actual);
+        }
 
         [Fact]
         public void ToUpperCaseCharcter()
@@ -429,6 +487,9 @@ namespace DevHorizons.Ark.Test
             var source = 'a';
             var expected = 'A';
             var actual = source.ToUpper();
+            Assert.Equal(expected, actual);
+
+            actual = source.ToUpper(CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
 
@@ -438,6 +499,9 @@ namespace DevHorizons.Ark.Test
             var source = 'A';
             var expected = 'a';
             var actual = source.ToLower();
+            Assert.Equal(expected, actual);
+
+            actual = source.ToLower(CultureInfo.InvariantCulture);
             Assert.Equal(expected, actual);
         }
         #endregion Convert

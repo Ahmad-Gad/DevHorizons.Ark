@@ -10,7 +10,8 @@
 //     <DateTime>24/08/2010  10:22 AM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
-namespace DevHorizons.Ark
+
+namespace DevHorizons.Ark.Validation
 {
     /// <summary>
     ///     Defines all the needed extension methods required to compare between objects/values/items.

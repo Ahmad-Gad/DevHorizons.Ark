@@ -1,5 +1,6 @@
 ﻿namespace DevHorizons.Ark.Test
 {
+    using DevHorizons.Ark.Validation;
     using TurboCode;
 
     public class JCompareTest

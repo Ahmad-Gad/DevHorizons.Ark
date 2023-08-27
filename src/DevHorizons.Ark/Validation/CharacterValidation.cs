@@ -12,6 +12,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace DevHorizons.Ark.Validation
 {
+    using System.Globalization;
     using TurboCode;
 
     /// <summary>
@@ -27,6 +28,10 @@ namespace DevHorizons.Ark.Validation
         /// Determines whether the specified source is in lower case.
         /// </summary>
         /// <param name="source">The source character.</param>
+        /// <param name="culture">
+        ///     Optional: The locale culture.
+        ///     <para>The Default Value: <see cref="CultureInfo.InvariantCulture"/>.</para>
+        /// </param>
         /// <returns>
         ///   <c>True</c> if the specified source is in lower case; otherwise, <c>false</c>.
         /// </returns>
@@ -34,15 +39,19 @@ namespace DevHorizons.Ark.Validation
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:57 PM</DateTime>
         /// </Created>
-        public static bool IsLower(this char source)
+        public static bool IsLower(this char source, CultureInfo culture = null)
         {
-            return source == source.ToLower();
+            return source == source.ToLower(culture);
         }
 
         /// <summary>
         /// Determines whether the specified source is in upper case.
         /// </summary>
         /// <param name="source">The source character.</param>
+        /// <param name="culture">
+        ///     Optional: The locale culture.
+        ///     <para>The Default Value: <see cref="CultureInfo.InvariantCulture"/>.</para>
+        /// </param>
         /// <returns>
         ///   <c>True</c> if the specified source is in upper case; otherwise, <c>false</c>.
         /// </returns>
@@ -50,9 +59,9 @@ namespace DevHorizons.Ark.Validation
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>13/11/2012 01:57 PM</DateTime>
         /// </Created>
-        public static bool IsUpper(this char source)
+        public static bool IsUpper(this char source, CultureInfo culture = null)
         {
-            return source == source.ToUpper();
+            return source == source.ToUpper(culture);
         }
     }
 }

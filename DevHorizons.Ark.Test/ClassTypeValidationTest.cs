@@ -1,72 +1,12 @@
 ﻿namespace DevHorizons.Ark.Test
 {
-    using DevHorizons.Ark.Validation;
     using System.Collections;
+    using Internal;
+    using Validation;
 
     public class ClassTypeValidationTest
     {
         #region Private Members
-        enum Color
-        {
-            Red = 0,
-            Green = 1,
-            Blue = 2                
-        }
-
-        enum ParentManufacturer
-        {
-            GeneralMotors = 0,
-            Stellantis = 1,
-            FordMotors = 2,
-            ToyotaMotor = 3,
-            Volkswagen = 4,
-            TataMotors = 5
-
-        }
-
-
-        enum CarManufacturer
-        {
-            Ford = 0,
-            Buick = 1,
-            Cadillac = 2,
-            Chevrolet = 3,
-            Chrysler = 4,
-            Jeep = 5,
-            Tesla = 6,
-            Dodge = 7,
-            GMC = 8,
-            RAM = 9,
-            Lincoln = 10,
-            Nissan = 1
-
-        }
-
-        struct Employee
-        {
-            public string Name { get; set; }
-
-            public DateOnly DateOfBirth { get; set; }
-        }
-
-        class Car
-        {
-            public Color Color { get; set; }
-
-            public int Model { get; set; }
-
-            public string Name { get; set; }
-
-            public CarManufacturer Manufacturer { get; set; }
-
-            public ParentManufacturer ParentManufacturer { get; set; }
-        }
-
-        class GenericClass<T>
-        {
-            public T Value { get; set; }
-        }
-
         private bool TestGeneric<T>(T value)
         {
             return value.IsCollectionOrGenericCollection();
@@ -104,7 +44,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.IsCompositeType());
             Assert.False(dateOnly.IsCompositeType());
@@ -171,7 +111,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.IsStruct());
             Assert.False(dateOnly.IsStruct());
@@ -238,7 +178,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.GetType().IsCompositeType());
             Assert.False(dateOnly.GetType().IsCompositeType());
@@ -302,7 +242,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.IsCollectionOrGenericCollection());
             Assert.False(dateOnly.IsCollectionOrGenericCollection());
@@ -372,7 +312,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.True(dateTime.IsSimpleType());
             Assert.True(dateOnly.IsSimpleType());
@@ -443,7 +383,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.IsSingleConcreteClass());
             Assert.False(dateOnly.IsSingleConcreteClass());
@@ -514,7 +454,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.IsCollection());
             Assert.False(dateOnly.IsCollection());
@@ -554,6 +494,70 @@
         }
 
         [Fact]
+        public void TestIsCollectionType()
+        {
+            var dateTime = DateTime.Now;
+            var dateOnly = DateOnly.FromDateTime(dateTime);
+            var doubleValue = 4.5D;
+            var floatValue = 4.5F;
+            var decimalValue = 4.5M;
+            var str = "Ahmad Gad";
+            var c = 'C';
+            var guid = Guid.NewGuid();
+            var color = Color.Red;
+            byte b = 3;
+            sbyte sb = -3;
+            int integer = 15061980;
+            ulong unsighnedLong = 353838489055;
+            long longDigit = 201002501021;
+
+            var employee = new Employee
+            {
+                Name = "Ahmad Gad",
+                DateOfBirth = DateOnly.Parse("1980-06-15")
+            };
+
+            var car = new Car();
+
+            var list = new List<int> { };
+            var array = new string[3];
+            var arrayList = new ArrayList();
+            var dic = new Dictionary<string, string>();
+            var hashTable = new Hashtable();
+            var hashSet = new HashSet<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
+
+            Assert.False(dateTime.GetType().IsCollection());
+            Assert.False(dateOnly.GetType().IsCollection());
+            Assert.False(doubleValue.GetType().IsCollection());
+            Assert.False(floatValue.GetType().IsCollection());
+            Assert.False(decimalValue.GetType().IsCollection());
+            Assert.False(str.GetType().IsCollection());
+            Assert.False(c.GetType().IsCollection());
+            Assert.False(guid.GetType().IsCollection());
+            Assert.False(b.GetType().IsCollection());
+            Assert.False(sb.GetType().IsCollection());
+            Assert.False(dateOnly.GetType().IsCollection());
+            Assert.False(integer.GetType().IsCollection());
+            Assert.False(unsighnedLong.GetType().IsCollection());
+            Assert.False(longDigit.GetType().IsCollection());
+
+            Assert.False(color.GetType().IsCollection());
+
+
+            Assert.False(employee.GetType().IsCollection());
+            Assert.False(car.GetType().IsCollection());
+            Assert.False(genericClass.GetType().IsCollection());
+
+            Assert.True(list.GetType().IsCollection());
+            Assert.True(array.GetType().IsCollection());
+            Assert.True(arrayList.GetType().IsCollection());
+            Assert.True(dic.GetType().IsCollection());
+            Assert.True(hashTable.GetType().IsCollection());
+            Assert.False(hashSet.GetType().IsCollection());
+        }
+
+        [Fact]
         public void TestIsGenericCollection()
         {
             var dateTime = DateTime.Now;
@@ -585,7 +589,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.IsGenericCollection());
             Assert.False(dateOnly.IsGenericCollection());
@@ -655,7 +659,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.IsCollectionOrGenericCollection());
             Assert.False(dateOnly.IsCollectionOrGenericCollection());
@@ -726,7 +730,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(dateTime.GetType().IsCollectionOrGenericCollection());
             Assert.False(dateOnly.GetType().IsCollectionOrGenericCollection());
@@ -768,7 +772,7 @@
             var dic = new Dictionary<string, string>();
             var hashTable = new Hashtable();
             var hashSet = new HashSet<int>();
-            var genericClass = new GenericClass<int>();
+            var genericClass = new GenericClass<int, int, int, int>();
 
             Assert.False(list.IsCollectionOfConcreteClass());
             Assert.False(array.IsCollectionOfConcreteClass());
