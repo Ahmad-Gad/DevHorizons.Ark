@@ -1,7 +1,6 @@
 ﻿namespace DevHorizons.Ark.Test
 {
     using System.Globalization;
-
     using Exceptions;
     using TurboCode;
     using Validation;

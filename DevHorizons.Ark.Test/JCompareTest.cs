@@ -1,7 +1,7 @@
 ﻿namespace DevHorizons.Ark.Test
 {
-    using DevHorizons.Ark.Validation;
     using TurboCode;
+    using Validation;
 
     public class JCompareTest
     {
