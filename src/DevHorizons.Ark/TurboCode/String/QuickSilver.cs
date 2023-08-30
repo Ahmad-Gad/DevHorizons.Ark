@@ -14,6 +14,7 @@ namespace DevHorizons.Ark.TurboCode
 {
     using System.Diagnostics;
     using System.Globalization;
+    using System.Text;
     using Exceptions;
     using Validation;
 
@@ -346,13 +347,14 @@ namespace DevHorizons.Ark.TurboCode
                 culture = CultureInfo.InvariantCulture;
             }
 
-            source = source.ToLower(culture);
-            var newString = source[0].ToUpper(culture).ToString();
-
             if (source.Length == 1)
             {
-                return newString;
+                return source.ToUpper(culture);
             }
+
+            source = source.ToLower(culture);
+            var strBuilder = new StringBuilder(source[0].ToUpper(culture).ToString(), source.Length);
+            
 
             for (int i = 1; i < source.Length; i++)
             {
@@ -360,15 +362,15 @@ namespace DevHorizons.Ark.TurboCode
 
                 if (!((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122) || (ascii >= 48 && ascii <= 57) || ascii == Character.SingleQuote))
                 {
-                    newString += source[i].ToUpper(culture);
+                    strBuilder.Append(source[i].ToUpper(culture));
                 }
                 else
                 {
-                    newString += source[i];
+                    strBuilder.Append(source[i]);
                 }
             }
 
-            return newString;
+            return strBuilder.ToString(); ;
         }
 
         /// <summary>
@@ -407,18 +409,56 @@ namespace DevHorizons.Ark.TurboCode
                 throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
             }
 
-            var newString = string.Empty;
+            if (culture == null)
+            {
+                culture = CultureInfo.InvariantCulture;
+            }
+
+            if (source.Length == 1)
+            {
+                return source.IsUpper(culture) ? source.ToLower(culture) : source.ToUpper(culture);
+            }
+
+            var strBuilder = new StringBuilder(source.Length);
 
             foreach (char chr in source)
             {
-                var newChar = chr.IsUpper() ? chr.ToLower(culture) : chr.ToUpper(culture);
-                newString += newChar;
+                strBuilder.Append(chr.IsUpper() ? chr.ToLower(culture) : chr.ToUpper(culture));
             }
 
-            return newString;
+            return strBuilder.ToString();
         }
 
         #region Internal Functions
+        /// <summary>
+        ///    Slices the specified source.
+        /// </summary>
+        /// <param name="source">
+        ///     The input source string.
+        ///     <para>Cannot be null.</para>
+        ///     <para>Can be empty string however, both start and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        /// </param>
+        /// <param name="start">
+        ///    The start/first index/position in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be greater than the 'end' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <param name="end">
+        ///    The last index/position in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be less than the 'start' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <returns>
+        ///    A slice of string which has specific start index and specific end index within the string length.
+        /// </returns>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        /// </Created>
         internal static string SliceInternal(this string source, int start, int end)
         {
             return source.Substring(start, end - start + 1);

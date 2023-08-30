@@ -70,6 +70,17 @@
         }
 
         [Fact]
+        public void ToRevertedCaseOneChar2()
+        {
+            var name = "J";
+
+            var expected = "j";
+            var actual = name.ToRevertedCase();
+            Assert.Equal(expected, actual);
+            Assert.Equal(name, actual.ToRevertedCase());
+        }
+
+        [Fact]
         public void ToRevertedCaseOneCharNumber()
         {
             var name = "2";
