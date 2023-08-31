@@ -26,7 +26,7 @@ namespace DevHorizons.Ark.TurboCode
     public static partial class JString
     {
         /// <summary>
-        ///     Splits the specified source string by a specific separator/delimiter into collection of strings.
+        ///    Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the left.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -36,6 +36,10 @@ namespace DevHorizons.Ark.TurboCode
         ///    The separator.
         ///    <para>Cannot be null or empty string.</para>
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
+        /// </param>
+        /// <param name="index">
+        ///    The specified index for the split item.
+        ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="matchCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.
@@ -60,13 +64,13 @@ namespace DevHorizons.Ark.TurboCode
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        public static List<string> JSplit(this string source, string delimiter, bool matchCase = true, CultureInfo culture = null)
+        public static string SplitCutLeft(this string source, string delimiter, int index, bool matchCase = true, CultureInfo culture = null)
         {
-            return source.JSplit(delimiter, 0, matchCase, culture);
+            return source.SplitCutLeft(delimiter, index, 0, matchCase, culture);
         }
 
         /// <summary>
-        ///     Splits the specified source string by a specific separator/delimiter into collection of strings.
+        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the left.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -76,6 +80,10 @@ namespace DevHorizons.Ark.TurboCode
         ///    The separator.
         ///    <para>Cannot be null or empty string.</para>
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
+        /// </param>
+        /// <param name="index">
+        ///    The specified index for the split item.
+        ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="start">
         ///    The start index in the specified 'source' string, where the split operation should start.
@@ -107,18 +115,18 @@ namespace DevHorizons.Ark.TurboCode
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        public static List<string> JSplit(this string source, string delimiter, int start, bool matchCase = true, CultureInfo culture = null)
+        public static string SplitCutLeft(this string source, string delimiter, int index, int start, bool matchCase = true, CultureInfo culture = null)
         {
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return source.JSplit(delimiter, start, source.Length - 1, matchCase, culture);
+            return source.SplitCutLeft(delimiter, index, start, source.Length - 1, matchCase, culture);
         }
 
         /// <summary>
-        ///     Splits the specified source string by a specific separator/delimiter into collection of strings.
+        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the left.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -128,6 +136,10 @@ namespace DevHorizons.Ark.TurboCode
         ///    The separator.
         ///    <para>Cannot be null or empty string.</para>
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
+        /// </param>
+        /// <param name="index">
+        ///    The specified index for the split item.
+        ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="start">
         ///    The start index in the specified 'source' string, where the split operation should start.
@@ -164,7 +176,7 @@ namespace DevHorizons.Ark.TurboCode
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        public static List<string> JSplit(this string source, string delimiter, int start, int end, bool matchCase = true, CultureInfo culture = null)
+        public static string SplitCutLeft(this string source, string delimiter, int index, int start, int end, bool matchCase = true, CultureInfo culture = null)
         {
             if (source == null)
             {
@@ -183,6 +195,18 @@ namespace DevHorizons.Ark.TurboCode
                 var stackStrace = new StackTrace();
                 var message = $"The input digital value of the argument '{argumentName}' cannot be empty string";
                 var exceptionCode = ArgumentExceptionCode.EmptyString;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (index < 0)
+            {
+                var argumentName = nameof(index);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
                 var code = (long)exceptionCode;
 
                 throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
@@ -295,19 +319,18 @@ namespace DevHorizons.Ark.TurboCode
 
             if (del.Length == txt.Length)
             {
-                if (del == txt)
+                if (del == txt && index <= 1)
                 {
-                    return new List<string> { string.Empty, string.Empty };
+                    return string.Empty;
                 }
 
                 return null;
             }
 
             var len = txt.Length - delimiter.Length + 1;
-            var array = new List<string>();
             //// ---------------------------------------------------------
             start = -1;
-            var counter = 0;
+            var counter = -1;
             //// ---------------------------------------------------------
             for (var i = 0; i < len; i++)
             {
@@ -315,47 +338,37 @@ namespace DevHorizons.Ark.TurboCode
                 if (txtCut == del)
                 {
                     counter++;
-
-                    if (start == -1)
+                    if (counter == index)
                     {
-                        if (i == 0)
+                        if (start == -1)
                         {
-                            array.Add(string.Empty);
+                            if (i == 0)
+                            {
+                                return string.Empty;
+                            }
+                            else
+                            {
+                                return source.Substring(0, i);
+                            }
+
                         }
                         else
                         {
-                            array.Add(source.Substring(0, i));
+                            return source.Substring(start, i - start);
                         }
-
-                        start = i + delimiter.Length;
-                    }
-                    else
-                    {
-                        array.Add(source.Substring(start, i - start));
-
-                        if (i + 1 == len)
-                        {
-                            array.Add(string.Empty);
-                        }
-
-                        start = i + delimiter.Length;
                     }
 
+                    start = i + delimiter.Length;
                     i += delimiter.Length - 1;
                 }
             }
 
-            if (array.Count == 0)
+            if (counter != -1 && counter == index - 1)
             {
-                return null;
+                return source.Substring(start);
             }
 
-            if (counter == array.Count)
-            {
-                array.Add(source.Substring(start));
-            }
-
-            return array;
+            return null;
         }
     }
 }

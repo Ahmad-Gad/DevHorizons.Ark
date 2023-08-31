@@ -26,7 +26,7 @@ namespace DevHorizons.Ark.TurboCode
     public static partial class JString
     {
         /// <summary>
-        ///     Splits the specified source string by a specific separator/delimiter into collection of strings.
+        ///    Splits the specified source string by a specific separator/delimiter into collection of strings assuming that the first character/index is the first character from the left.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -59,13 +59,13 @@ namespace DevHorizons.Ark.TurboCode
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        public static List<string> JSplit(this string source, char delimiter, bool matchCase = true, CultureInfo culture = null)
+        public static List<string> SplitLeft(this string source, char delimiter, bool matchCase = true, CultureInfo culture = null)
         {
-            return source.JSplit(delimiter, 0, matchCase, culture);
+            return source.SplitLeft(delimiter, 0, matchCase, culture);
         }
 
         /// <summary>
-        ///     Splits the specified source string by a specific separator/delimiter into collection of strings.
+        ///     Splits the specified source string by a specific separator/delimiter into collection of strings assuming that the first character/index is the first character from the left.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -104,18 +104,18 @@ namespace DevHorizons.Ark.TurboCode
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>15/07/2012  01:17 AM</DateTime>
         /// </Created>
-        public static List<string> JSplit(this string source, char delimiter, int start, bool matchCase = true, CultureInfo culture = null)
+        public static List<string> SplitLeft(this string source, char delimiter, int start, bool matchCase = true, CultureInfo culture = null)
         {
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return JSplit(source, delimiter, start, source.Length - 1, matchCase, culture);
+            return SplitLeft(source, delimiter, start, source.Length - 1, matchCase, culture);
         }
 
         /// <summary>
-        ///     Splits the specified source string by a specific separator/delimiter into collection of strings.
+        ///     Splits the specified source string by a specific separator/delimiter into collection of strings assuming that the first character/index is the first character from the left.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -160,7 +160,7 @@ namespace DevHorizons.Ark.TurboCode
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        public static List<string> JSplit(this string source, char delimiter, int start, int end, bool matchCase = true, CultureInfo culture = null)
+        public static List<string> SplitLeft(this string source, char delimiter, int start, int end, bool matchCase = true, CultureInfo culture = null)
         {
             if (source == null)
             {

@@ -4,7 +4,7 @@
     using TurboCode;
     using Validation;
 
-    public class JStringSplitCharDelimiter
+    public class SplitLeftCharDelimiterTest
     {
         #region Test Exceptions
         [Fact]
@@ -12,7 +12,7 @@
         {
             string source = null;
             char delimiter = Character.WhiteSpace;
-            var ex = Record.Exception(() => source.JSplit(delimiter));
+            var ex = Record.Exception(() => source.SplitLeft(delimiter));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentNullException>(ex);
             var argumentNullException = ex as ArgumentNullException;
@@ -25,7 +25,7 @@
         {
             string source = null;
             char delimiter = Character.WhiteSpace;
-            var ex = Record.Exception(() => source.JSplit(delimiter, 0, 4));
+            var ex = Record.Exception(() => source.SplitLeft(delimiter, 0, 4));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentNullException>(ex);
             var argumentNullException = ex as ArgumentNullException;
@@ -38,7 +38,7 @@
         {
             string source = "Ahmad Gad";
             char delimiter = Character.Null;
-            var ex = Record.Exception(() => source.JSplit(delimiter));
+            var ex = Record.Exception(() => source.SplitLeft(delimiter));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentNullException>(ex);
             var argumentNullException = ex as ArgumentNullException;
@@ -50,7 +50,7 @@
         public void TestSplitWithEmptyExceptionSource()
         {
             string source = string.Empty;
-            var ex = Record.Exception(() => source.JSplit(Character.WhiteSpace));
+            var ex = Record.Exception(() => source.SplitLeft(Character.WhiteSpace));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -64,7 +64,7 @@
         public void TestSplitWithEmptyExceptionSourceWithStartAndEnd()
         {
             string source = string.Empty;
-            var ex = Record.Exception(() => source.JSplit(Character.WhiteSpace, 1, 2));
+            var ex = Record.Exception(() => source.SplitLeft(Character.WhiteSpace, 1, 2));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -81,7 +81,7 @@
         {
             string source = "Ahmad Gad";
             char delimiter = Character.WhiteSpace;
-            var ex = Record.Exception(() => source.JSplit(delimiter, -1));
+            var ex = Record.Exception(() => source.SplitLeft(delimiter, -1));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -98,7 +98,7 @@
         {
             string source = "Ahmad Gad";
             char delimiter = Character.WhiteSpace;
-            var ex = Record.Exception(() => source.JSplit(delimiter, 0, -1));
+            var ex = Record.Exception(() => source.SplitLeft(delimiter, 0, -1));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -115,7 +115,7 @@
         {
             string source = "Ahmad Gad";
             char delimiter = Character.WhiteSpace;
-            var ex = Record.Exception(() => source.JSplit(delimiter, source.Length));
+            var ex = Record.Exception(() => source.SplitLeft(delimiter, source.Length));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -133,7 +133,7 @@
         {
             string source = "Ahmad Gad";
             char delimiter = Character.WhiteSpace;
-            var ex = Record.Exception(() => source.JSplit(delimiter, 0, source.Length));
+            var ex = Record.Exception(() => source.SplitLeft(delimiter, 0, source.Length));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -151,7 +151,7 @@
         {
             string source = "Ahmad Gad";
             char delimiter = Character.WhiteSpace;
-            var ex = Record.Exception(() => source.JSplit(delimiter, 3, 2));
+            var ex = Record.Exception(() => source.SplitLeft(delimiter, 3, 2));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -170,11 +170,11 @@
         {
             var source = "Jan Feb Mar April";
             var expected = new List<string> { "Jan", "Feb", "Mar", "April" };
-            List<string> actual = source.JSplit(' ', true);
-            IReadOnlyList<string> actualReadOnlyList = source.JSplit(' ', true);
-            string[] actualArray = source.JSplit(' ', true).ToArray();
-            HashSet<string> actualHashSet = source.JSplit(' ', true).ToHashSet();
-            // var actual = source.JSplit(' ', true);
+            List<string> actual = source.SplitLeft(' ', true);
+            IReadOnlyList<string> actualReadOnlyList = source.SplitLeft(' ', true);
+            string[] actualArray = source.SplitLeft(' ', true).ToArray();
+            HashSet<string> actualHashSet = source.SplitLeft(' ', true).ToHashSet();
+            // var actual = source.SplitLeft(' ', true);
             Assert.True(expected.CompareTo(actual));
             Assert.True(expected.CompareTo(actualArray));
             Assert.True(expected.CompareTo(actualHashSet));
@@ -186,7 +186,7 @@
         {
             var source = "Jan Feb Mar April";
             var expected = new List<string> { "Jan", "Feb", "Mar", "April" };
-            var actual = source.JSplit(' ', false);
+            var actual = source.SplitLeft(' ', false);
             Assert.True(expected.CompareTo(actual));
         }
 
@@ -194,7 +194,7 @@
         public void SplitNonMatchigCase()
         {
             var source = "JanZFebZMarZApril";
-            var actual = source.JSplit('z');
+            var actual = source.SplitLeft('z');
 
             Assert.Null(actual);
         }
@@ -203,7 +203,7 @@
         public void SplitNonMatchigCaseMatchCaseTrue()
         {
             var source = "JanZFebZMarZApril";
-            var actual = source.JSplit('z', true);
+            var actual = source.SplitLeft('z', true);
 
             Assert.Null(actual);
         }
@@ -213,7 +213,7 @@
         {
             var source = "JanZFebZMarZApril";
             var expected = new List<string> { "Jan", "Feb", "Mar", "April" };
-            var actual = source.JSplit('Z', false);
+            var actual = source.SplitLeft('Z', false);
             Assert.True(expected.CompareTo(actual));
         }
 
@@ -222,7 +222,7 @@
         {
             var source = "JanZFebZMarZApril";
             var expected = new List<string> { "Jan", "Feb", "Mar", "April" };
-            var actual = source.JSplit('Z', true);
+            var actual = source.SplitLeft('Z', true);
             Assert.True(expected.CompareTo(actual));
         }
 
@@ -231,46 +231,46 @@
         {
             var source = "JanZFebZMarZApril";
             var expected = new List<string> { "Jan", "Feb", "Mar", "April" };
-            var actual = source.JSplit('z', false);
+            var actual = source.SplitLeft('z', false);
             Assert.True(expected.CompareTo(actual));
         }
 
         [Fact]
-        public void SplitelimiterOnly()
+        public void SplitDelimiterOnly()
         {
             var source = JString.WhiteSpace;
             var expected = new List<string> { string.Empty, string.Empty };
-            var actual = source.JSplit(Character.WhiteSpace);
+            var actual = source.SplitLeft(Character.WhiteSpace);
             Assert.NotNull(actual);
             Assert.True(expected.CompareTo(actual));
         }
 
         [Fact]
-        public void SplitelimiterOnly2()
+        public void SplitDelimiterOnly2()
         {
             var source = "A";
             var expected = new List<string> { string.Empty, string.Empty };
-            var actual = source.JSplit('A');
+            var actual = source.SplitLeft('A');
             Assert.NotNull(actual);
             Assert.True(expected.CompareTo(actual));
         }
 
         [Fact]
-        public void SplitelimiterOnly3()
+        public void SplitDelimiterOnly3()
         {
             var source = "A";
             var expected = new List<string> { string.Empty, string.Empty };
-            var actual = source.JSplit('a', false);
+            var actual = source.SplitLeft('a', false);
             Assert.NotNull(actual);
             Assert.True(expected.CompareTo(actual));
         }
 
         [Fact]
-        public void SplitelimiterOnlyNotMatch()
+        public void SplitDelimiterOnlyNotMatch()
         {
             var source = JString.WhiteSpace;
             var expected = new List<string> { string.Empty, string.Empty };
-            var actual = source.JSplit('X');
+            var actual = source.SplitLeft('X');
             Assert.Null(actual);
         }
 
@@ -279,7 +279,7 @@
         {
             var source = " Jan Feb Mar April";
             var expected = new List<string> { string.Empty, "Jan", "Feb", "Mar", "April" };
-            var actual = source.JSplit(Character.WhiteSpace);
+            var actual = source.SplitLeft(Character.WhiteSpace);
             Assert.NotNull(actual);
 
             Assert.True(expected.CompareTo(actual));
@@ -290,7 +290,7 @@
         {
             var source = "Jan Feb Mar April ";
             var expected = new List<string> { "Jan", "Feb", "Mar", "April", string.Empty };
-            var actual = source.JSplit(Character.WhiteSpace);
+            var actual = source.SplitLeft(Character.WhiteSpace);
             Assert.NotNull(actual);
 
             Assert.True(expected.CompareTo(actual));
@@ -301,7 +301,7 @@
         {
             var source = " Jan Feb Mar April ";
             var expected = new List<string> { string.Empty, "Jan", "Feb", "Mar", "April", string.Empty };
-            var actual = source.JSplit(Character.WhiteSpace);
+            var actual = source.SplitLeft(Character.WhiteSpace);
             Assert.NotNull(actual);
 
             Assert.True(expected.CompareTo(actual));
@@ -312,7 +312,7 @@
         {
             var source = "   Jan Feb  Mar April   ";
             var expected = new List<string> { string.Empty, string.Empty, string.Empty, "Jan", "Feb", string.Empty, "Mar", "April", string.Empty, string.Empty, string.Empty };
-            var actual = source.JSplit(Character.WhiteSpace);
+            var actual = source.SplitLeft(Character.WhiteSpace);
             Assert.NotNull(actual);
 
             Assert.True(expected.CompareTo(actual));

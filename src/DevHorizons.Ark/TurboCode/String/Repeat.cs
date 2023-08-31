@@ -12,7 +12,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace DevHorizons.Ark.TurboCode
 {
-    using System.Globalization;
     using System.Text;
 
 
@@ -96,7 +95,6 @@ namespace DevHorizons.Ark.TurboCode
             {
                 strBuilder.Append(delimiter);
                 strBuilder.Append(source);
-
             }
 
             return strBuilder.ToString();
@@ -149,7 +147,6 @@ namespace DevHorizons.Ark.TurboCode
             {
                 strBuilder.Append(delimiter);
                 strBuilder.Append(source);
-
             }
 
             return strBuilder.ToString();
@@ -209,7 +206,10 @@ namespace DevHorizons.Ark.TurboCode
 
             if (count <= 1)
             {
-                return source.ToString(CultureInfo.InvariantCulture);
+                unsafe
+                {
+                    return new string(&source);
+                }
             }
 
             if (string.IsNullOrEmpty(delimiter))
@@ -217,13 +217,13 @@ namespace DevHorizons.Ark.TurboCode
                 return source.RepeatInternal(count);
             }
 
-            var strBuilder = new StringBuilder(source.ToString(CultureInfo.InvariantCulture), count * 2 - 1);
+            var strBuilder = new StringBuilder(count * 2 - 1);
+            strBuilder.Append(source);
 
             for (int i = 1; i < count; i++)
             {
                 strBuilder.Append(delimiter);
                 strBuilder.Append(source);
-
             }
 
             return strBuilder.ToString();
@@ -257,7 +257,10 @@ namespace DevHorizons.Ark.TurboCode
 
             if (count <= 1)
             {
-                return source.ToString(CultureInfo.InvariantCulture);
+                unsafe
+                {
+                    return new string(&source);
+                }
             }
 
             if (delimiter == Character.Null)
@@ -265,13 +268,13 @@ namespace DevHorizons.Ark.TurboCode
                 return source.RepeatInternal(count);
             }
 
-            var strBuilder = new StringBuilder(source.ToString(CultureInfo.InvariantCulture), count * 2 - 1);
+            var strBuilder = new StringBuilder(count * 2 - 1);
+            strBuilder.Append(source);
 
             for (int i = 1; i < count; i++)
             {
                 strBuilder.Append(delimiter);
                 strBuilder.Append(source);
-
             }
 
             return strBuilder.ToString();
@@ -313,7 +316,8 @@ namespace DevHorizons.Ark.TurboCode
         /// </Created>
         private static string RepeatInternal(this char source, int count)
         {
-            var strBuilder = new StringBuilder(source.ToString(CultureInfo.InvariantCulture), count);
+            var strBuilder = new StringBuilder(count);
+            strBuilder.Append(source);
 
             for (int i = 1; i < count; i++)
             {
