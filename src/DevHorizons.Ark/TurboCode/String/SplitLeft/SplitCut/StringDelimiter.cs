@@ -89,7 +89,6 @@ namespace DevHorizons.Ark.TurboCode
         ///    The start index in the specified 'source' string, where the split operation should start.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
-        ///    <para>Cannot be equal or greater than the 'end' value.</para>
         /// </param>
         /// <param name="matchCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.
@@ -110,7 +109,6 @@ namespace DevHorizons.Ark.TurboCode
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
         /// </remarks>
         /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
-
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
@@ -350,7 +348,6 @@ namespace DevHorizons.Ark.TurboCode
                             {
                                 return source.Substring(0, i);
                             }
-
                         }
                         else
                         {

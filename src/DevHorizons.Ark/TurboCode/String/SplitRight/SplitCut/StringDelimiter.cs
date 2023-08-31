@@ -26,7 +26,7 @@ namespace DevHorizons.Ark.TurboCode
     public static partial class JString
     {
         /// <summary>
-        ///    Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the left.
+        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the right.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -38,7 +38,7 @@ namespace DevHorizons.Ark.TurboCode
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="index">
-        ///    The specified index for the split item.
+        ///    The specified index for the split item from the right side.
         ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="matchCase">
@@ -55,9 +55,11 @@ namespace DevHorizons.Ark.TurboCode
         /// <exception cref="ArgumentNullException" />
         /// <exception cref="ArgumentException" />
         /// <remarks>
-        ///     Will return 'null' if the 'delimiter' does not exist in the specified input source.
+        ///     The zero-based index is the first charcter from the right side of the string.
+        ///     <para>Will return 'null' if the 'delimiter' does not exist in the specified input source.</para>
         ///     <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
+        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitCutLeft(string, string, int, bool, CultureInfo)"/>" extension method.</para>
         /// </remarks>
         /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
         /// <Created>
@@ -70,7 +72,7 @@ namespace DevHorizons.Ark.TurboCode
         }
 
         /// <summary>
-        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the left.
+        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the right.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -82,14 +84,13 @@ namespace DevHorizons.Ark.TurboCode
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="index">
-        ///    The specified index for the split item.
+        ///    The specified index for the split item from the right side.
         ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="start">
-        ///    The start index in the specified 'source' string, where the split operation should start.
+        ///    The start index in the specified 'source' string from the right side, where the split operation should start.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
-        ///    <para>Cannot be equal or greater than the 'end' value.</para>
         /// </param>
         /// <param name="matchCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.
@@ -105,12 +106,13 @@ namespace DevHorizons.Ark.TurboCode
         /// <exception cref="ArgumentNullException" />
         /// <exception cref="ArgumentException" />
         /// <remarks>
-        ///     Will return 'null' if the 'delimiter' does not exist in the specified input source.
+        ///     The zero-based index is the first charcter from the right side of the string.
+        ///     <para>Will return 'null' if the 'delimiter' does not exist in the specified input source.</para>
         ///     <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
+        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitCutLeft(string, string, int, int, bool, CultureInfo)"/>" extension method.</para>
         /// </remarks>
         /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
-
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
@@ -126,7 +128,7 @@ namespace DevHorizons.Ark.TurboCode
         }
 
         /// <summary>
-        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the left.
+        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the right.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -138,17 +140,17 @@ namespace DevHorizons.Ark.TurboCode
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="index">
-        ///    The specified index for the split item.
+        ///    The specified index for the split item from the right side.
         ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="start">
-        ///    The start index in the specified 'source' string, where the split operation should start.
+        ///    The start index in the specified 'source' string from the right side, where the split operation should start.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
         ///    <para>Cannot be equal or greater than the 'end' value.</para>
         /// </param>
         /// <param name="end">
-        ///    The last index in the specified 'source' string, where the split operation should stop.
+        ///    The last index in the specified 'source' string from the right side, where the split operation should stop.
         ///    <para>Cannot be less than zero, unless the delimiter is just one character.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source', unless the delimiter is just one character.</para>
         ///    <para>Cannot be equal or less than the 'start' value, unless the delimiter is just one character, then it would be acceptable to be equal to the 'start' value.</para>
@@ -167,9 +169,11 @@ namespace DevHorizons.Ark.TurboCode
         /// <exception cref="ArgumentNullException" />
         /// <exception cref="ArgumentException" />
         /// <remarks>
-        ///     Will return 'null' if the 'delimiter' does not exist in the specified input source.
+        ///     The zero-based index is the first charcter from the right side of the string.
+        ///     <para>Will return 'null' if the 'delimiter' does not exist in the specified input source.</para>
         ///     <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
+        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitCutLeft(string, string, int, int, int, bool, CultureInfo)"/>" extension method.</para>
         /// </remarks>
         /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
         /// <Created>
