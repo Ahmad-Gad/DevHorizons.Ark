@@ -311,7 +311,7 @@ namespace DevHorizons.Ark.TurboCode
             //// ---------------------------------------------------------
             for (var i = 0; i < len; i++)
             {
-                var txtCut = txt.CutRight(i, delimiter.Length);
+                var txtCut = txt.CutRightInternal(i, delimiter.Length);
                 if (txtCut == del)
                 {
                     counter++;
@@ -324,23 +324,20 @@ namespace DevHorizons.Ark.TurboCode
                         }
                         else
                         {
-                            array.Add(source.CutRight(0, i));
+                            array.Add(source.CutRightInternal(0, i));
                         }
-
-                        start = i + delimiter.Length;
                     }
                     else
                     {
-                        array.Add(source.CutRight(start, i - start));
+                        array.Add(source.CutRightInternal(start, i - start));
 
                         if (i + 1 == len)
                         {
                             array.Add(string.Empty);
                         }
-
-                        start = i + delimiter.Length;
                     }
 
+                    start = i + delimiter.Length;
                     i += delimiter.Length - 1;
                 }
             }
@@ -352,7 +349,7 @@ namespace DevHorizons.Ark.TurboCode
 
             if (counter == array.Count)
             {
-                array.Add(source.CutRight(start));
+                array.Add(source.CutRightInternal(start));
             }
 
             return array;

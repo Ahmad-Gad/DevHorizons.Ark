@@ -326,8 +326,6 @@ namespace DevHorizons.Ark.TurboCode
                         {
                             array.Add(source.Substring(0, i));
                         }
-
-                        start = i + delimiter.Length;
                     }
                     else
                     {
@@ -337,10 +335,9 @@ namespace DevHorizons.Ark.TurboCode
                         {
                             array.Add(string.Empty);
                         }
-
-                        start = i + delimiter.Length;
                     }
 
+                    start = i + delimiter.Length;
                     i += delimiter.Length - 1;
                 }
             }

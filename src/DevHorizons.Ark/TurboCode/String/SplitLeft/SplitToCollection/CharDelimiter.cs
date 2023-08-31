@@ -292,8 +292,6 @@ namespace DevHorizons.Ark.TurboCode
                         {
                             array.Add(source.Substring(0, i));
                         }
-
-                        start = i + 1;
                     }
                     else
                     {
@@ -303,9 +301,9 @@ namespace DevHorizons.Ark.TurboCode
                         {
                             array.Add(string.Empty);
                         }
-
-                        start = i + 1;
                     }
+
+                    start = i + 1;
                 }
             }
 

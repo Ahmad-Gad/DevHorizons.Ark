@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CharSingleDelimiter.cs" company="Dev. Horizons - http://www.devhorizons.com">
+// <copyright file="StringSingleDelimiter.cs" company="Dev. Horizons - http://www.devhorizons.com">
 //   Copyright (c) 2012 All Right Reserved
 // </copyright>
 // <summary>
@@ -26,7 +26,7 @@ namespace DevHorizons.Ark.TurboCode
     public static partial class JString
     {
         /// <summary>
-        ///    Splits the specified source string by a specific separator/delimiter into collection of strings assuming that the first character/index is the first character from the left.
+        ///     Splits the specified source string by a specific separator/delimiter into collection of strings assuming that the first character/index is the first character from the left.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -34,7 +34,8 @@ namespace DevHorizons.Ark.TurboCode
         /// </param>
         /// <param name="delimiter">
         ///    The separator.
-        ///    <para>Cannot be null.</para>
+        ///    <para>Cannot be null or empty string.</para>
+        ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="matchCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.
@@ -73,7 +74,8 @@ namespace DevHorizons.Ark.TurboCode
         /// </param>
         /// <param name="delimiter">
         ///    The separator.
-        ///    <para>Cannot be null</para>
+        ///    <para>Cannot be null or empty string.</para>
+        ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="start">
         ///    The start index in the specified 'source' string, where the split operation should start.
@@ -100,9 +102,10 @@ namespace DevHorizons.Ark.TurboCode
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
         /// </remarks>
         /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
+
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
-        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
         public static List<string> SplitRight(this string source, char delimiter, int start, bool matchCase = true, CultureInfo culture = null)
         {
@@ -111,7 +114,7 @@ namespace DevHorizons.Ark.TurboCode
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return SplitRight(source, delimiter, start, source.Length - 1, matchCase, culture);
+            return source.SplitRight(delimiter, start, source.Length - 1, matchCase, culture);
         }
 
         /// <summary>
@@ -123,19 +126,20 @@ namespace DevHorizons.Ark.TurboCode
         /// </param>
         /// <param name="delimiter">
         ///    The separator.
-        ///    <para>Cannot be null.</para>
+        ///    <para>Cannot be null or empty string.</para>
+        ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="start">
         ///    The start index in the specified 'source' string, where the split operation should start.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
-        ///    <para>Cannot be greater than the 'end' value.</para>
+        ///    <para>Cannot be equal or greater than the 'end' value.</para>
         /// </param>
         /// <param name="end">
         ///    The last index in the specified 'source' string, where the split operation should stop.
-        ///    <para>Cannot be less than zero.</para>
-        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
-        ///    <para>Cannot less than the 'start' value.</para>
+        ///    <para>Cannot be less than zero, unless the delimiter is just one character.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source', unless the delimiter is just one character.</para>
+        ///    <para>Cannot be equal or less than the 'start' value, unless the delimiter is just one character, then it would be acceptable to be equal to the 'start' value.</para>
         /// </param>
         /// <param name="matchCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.
@@ -247,7 +251,8 @@ namespace DevHorizons.Ark.TurboCode
                 throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
             }
 
-            source = source.Substring(start, end - start + 1);
+            source = source.SliceRightInternal(start, end);
+
             var del = delimiter;
             var txt = source;
 
@@ -279,9 +284,10 @@ namespace DevHorizons.Ark.TurboCode
             //// ---------------------------------------------------------
             for (var i = 0; i < txt.Length; i++)
             {
-                if (txt[i] == del)
+                if (txt[txt.Length - 1 - i] == del)
                 {
                     counter++;
+
                     if (start == -1)
                     {
                         if (i == 0)
@@ -290,22 +296,21 @@ namespace DevHorizons.Ark.TurboCode
                         }
                         else
                         {
-                            array.Add(source.Substring(0, i));
+                            array.Add(source.CutRightInternal(0, i));
                         }
-
-                        start = i + 1;
                     }
                     else
                     {
-                        array.Add(source.Substring(start, i - start));
+                        array.Add(source.CutRightInternal(start, i - start));
 
                         if (i + 1 == txt.Length)
                         {
                             array.Add(string.Empty);
                         }
 
-                        start = i + 1;
                     }
+
+                    start = i + 1;
                 }
             }
 
@@ -316,7 +321,7 @@ namespace DevHorizons.Ark.TurboCode
 
             if (counter == array.Count)
             {
-                array.Add(source.Substring(start));
+                array.Add(source.CutRightInternal(start));
             }
 
             return array;
