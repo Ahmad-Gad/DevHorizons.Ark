@@ -98,7 +98,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length;
 
@@ -150,7 +150,7 @@ namespace DevHorizons.Ark.TurboCode
                         {
                             end = i - 1;
 
-                            array.Add(source.Slice(start, end));
+                            array.Add(source.SliceLeft(start, end));
                         }
 
                         start = -1;
@@ -236,7 +236,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length;
 
@@ -274,7 +274,7 @@ namespace DevHorizons.Ark.TurboCode
                     if (txtCutRigh == rightDel)
                     {
                         end = i - 1;
-                        array.Add(source.Slice(start, end));
+                        array.Add(source.SliceLeft(start, end));
                         start = -1;
                     }
                 }
@@ -400,7 +400,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length;
 
@@ -463,7 +463,7 @@ namespace DevHorizons.Ark.TurboCode
                 }
             }
 
-            return source.Slice(start, end);
+            return source.SliceLeft(start, end);
         }
         #endregion Split Left a String Between Two Delimiters (Left Delimiter & Right Delimiter) As String
 
@@ -581,7 +581,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length - 1;
 
@@ -634,7 +634,7 @@ namespace DevHorizons.Ark.TurboCode
                 }
             }
 
-            return source.Slice(start, end);
+            return source.SliceLeft(start, end);
         }
         #endregion Split Left a String Between Two Delimiters (Left Delimiter & Right Delimiter) As Character
         #endregion Left Side Split Between Two Delimiters
@@ -750,7 +750,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
             //// ---------------------------------------------------------
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
             var len = source.Length - delimiter.Length + 1;
 
             var del = delimiter;
@@ -916,7 +916,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
             //// ---------------------------------------------------------
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
             var len = source.Length;
 
             var del = delimiter;
@@ -1087,7 +1087,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length - rightDelimiter.Length + 1;
 
@@ -1147,7 +1147,7 @@ namespace DevHorizons.Ark.TurboCode
                 }
             }
 
-            return source.Slice(start, end);
+            return source.SliceLeft(start, end);
         }
         #endregion Split Right a String Between Two Delimiters (Left Delimiter & Right Delimiter) As String
 
@@ -1265,7 +1265,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length;
 
@@ -1313,7 +1313,7 @@ namespace DevHorizons.Ark.TurboCode
                 }
             }
 
-            return source.Slice(start, end);
+            return source.SliceLeft(start, end);
         }
         #endregion Split Right a String Between Two Delimiters (Left Delimiter & Right Delimiter) As Character
         #endregion Right Side Split Between Two Delimiters
@@ -1499,7 +1499,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length - delimiter.Length + 1;
 
@@ -1579,7 +1579,7 @@ namespace DevHorizons.Ark.TurboCode
                 }
             }
 
-            return source.Slice(start, end);
+            return source.SliceLeft(start, end);
         }
         #endregion SplitCut Right Side With String Separator
 
@@ -1846,7 +1846,7 @@ namespace DevHorizons.Ark.TurboCode
             }
 
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length;
 
@@ -1924,7 +1924,7 @@ namespace DevHorizons.Ark.TurboCode
                 }
             }
 
-            return source.Slice(start, end);
+            return source.SliceLeft(start, end);
         }
         #endregion SplitCut Right Side With Character Separator
         #endregion SplitCut Right Side
@@ -2043,9 +2043,9 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            var startPart = source.Slice(0, start - 1).ToStringOrEmptyString();
-            var endPart = source.Slice(end + 1, source.Length - 1).ToStringOrEmptyString();
-            var sourceSlice = source.Slice(start, end);
+            var startPart = source.SliceLeft(0, start - 1).ToStringOrEmptyString();
+            var endPart = source.SliceLeft(end + 1, source.Length - 1).ToStringOrEmptyString();
+            var sourceSlice = source.SliceLeft(start, end);
 
             var len = sourceSlice.Length;
             var searchString = oldValue;
@@ -2191,9 +2191,9 @@ namespace DevHorizons.Ark.TurboCode
                 return source;
             }
 
-            var sourceSlice = source.Slice(start, end);
-            var startPart = source.Slice(0, start - 1).ToStringOrEmptyString();
-            var endPart = source.Slice(end + 1, source.Length - 1).ToStringOrEmptyString();
+            var sourceSlice = source.SliceLeft(start, end);
+            var startPart = source.SliceLeft(0, start - 1).ToStringOrEmptyString();
+            var endPart = source.SliceLeft(end + 1, source.Length - 1).ToStringOrEmptyString();
 
             var len = sourceSlice.Length;
             var searchcharacter = oldValue;
@@ -2329,7 +2329,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length;
             var txt = source;
@@ -2474,7 +2474,7 @@ namespace DevHorizons.Ark.TurboCode
                 return null;
             }
 
-            source = source.Slice(start, end);
+            source = source.SliceLeft(start, end);
 
             var len = source.Length;
             var txt = source;

@@ -3,23 +3,23 @@
     using Exceptions;
     using TurboCode;
 
-    public class SliceTest
+    public class SliceRightTest
     {
         #region Test Exceptions
         [Fact]
-        public void TestSliceNull()
+        public void TestSliceRightNull()
         {
             var source = JString.Null;
-            var ex = Record.Exception(() => source.Slice(0, 2));
+            var ex = Record.Exception(() => source.SliceRight(0, 2));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentNullException>(ex);
         }
 
         [Fact]
-        public void TestSliceEmptyStringStartNotZero()
+        public void TestSliceRightEmptyStringStartNotZero()
         {
             var source = string.Empty;
-            var ex = Record.Exception(() => source.Slice(1, 1));
+            var ex = Record.Exception(() => source.SliceRight(1, 1));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -32,10 +32,10 @@
         }
 
         [Fact]
-        public void TestSliceEmptyStringEndNotZero()
+        public void TestSliceRightEmptyStringEndNotZero()
         {
             var source = string.Empty;
-            var ex = Record.Exception(() => source.Slice(0, 1));
+            var ex = Record.Exception(() => source.SliceRight(0, 1));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -48,10 +48,10 @@
         }
 
         [Fact]
-        public void TestSpliceExceptionStartLessThanZero()
+        public void TestSliceExceptionStartLessThanZero()
         {
             string source = "Ahmad Gad";
-            var ex = Record.Exception(() => source.Slice(-1, -1));
+            var ex = Record.Exception(() => source.SliceRight(-1, -1));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -64,11 +64,11 @@
         }
 
         [Fact]
-        public void TestSliceExceptionEndLessThanZero()
+        public void TestSliceRightExceptionEndLessThanZero()
         {
             string source = "Ahmad Gad";
             char delimiter = Character.WhiteSpace;
-            var ex = Record.Exception(() => source.Slice(0, -1));
+            var ex = Record.Exception(() => source.SliceRight(0, -1));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -81,10 +81,10 @@
         }
 
         [Fact]
-        public void TestSliceExceptionStartGreaterThanEnd()
+        public void TestSliceRightExceptionStartGreaterThanEnd()
         {
             string source = "Ahmad Gad";
-            var ex = Record.Exception(() => source.Slice(3, 2));
+            var ex = Record.Exception(() => source.SliceRight(3, 2));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -98,10 +98,10 @@
         }
 
         [Fact]
-        public void TestSliceExceptionStartGreaterThanLengthOfSource()
+        public void TestSliceRightExceptionStartGreaterThanLengthOfSource()
         {
             string source = "Ahmad Gad";
-            var ex = Record.Exception(() => source.Slice(source.Length, source.Length));
+            var ex = Record.Exception(() => source.SliceRight(source.Length, source.Length));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -115,10 +115,10 @@
         }
 
         [Fact]
-        public void TestSliceExceptionEndtGreaterThanLengthOfSource()
+        public void TestSliceRightExceptionEndtGreaterThanLengthOfSource()
         {
             string source = "Ahmad Gad";
-            var ex = Record.Exception(() => source.Slice( 0, source.Length));
+            var ex = Record.Exception(() => source.SliceRight( 0, source.Length));
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
             var argumentException = ex as ArgumentException;
@@ -133,76 +133,85 @@
         #endregion Test Exceptions
 
         [Fact]
-        public void TestSliceOneCharacter()
+        public void TestSliceRightOneCharacter()
         {
             var source = "A";
             var expected = "A";
-            var actual = source.Slice(0, 0);
+            var actual = source.SliceRight(0, 0);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void TestSlice01()
+        public void TestSliceRight01()
         {
             var source = "Ahmad Gad";
-            var expected = "Ahmad";
-            var actual = source.Slice(0, 4);
+            var expected = "d Gad";
+            var actual = source.SliceRight(0, 4);
             Assert.Equal(expected, actual);
         }
 
 
         [Fact]
-        public void TestSlice02()
+        public void TestSliceRight02()
         {
             var source = "Ahmad Gad";
             var expected = JString.WhiteSpace;
-            var actual = source.Slice(5, 5);
+            var actual = source.SliceRight(3, 3);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void TestSlice03()
+        public void TestSliceRight03()
         {
             var source = "Ahmad Gad";
-            var expected = "Gad";
-            var actual = source.Slice(6, 8);
+            var expected = "Ahmad";
+            var actual = source.SliceRight(4, 8);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void TestSlice04()
+        public void TestSliceRight04()
         {
             var source = "Ahmad Gad";
-            var expected = "Gad";
-            var actual = source.Slice(6, source.Length - 1);
+            var expected = "Ahm";
+            var actual = source.SliceRight(6, source.Length - 1);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void TestSlice05()
+        public void TestSliceRight05()
         {
             var source = "Ahmad Adel Gad";
             var expected = "Adel";
-            var actual = source.Slice(6, 9);
+            var actual = source.SliceRight(4, 7);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void TestSlice06()
+        public void TestSliceRight06()
         {
             var source = "Ahmad Adel Gad";
-            var expected = "A";
-            var actual = source.Slice(0, 0);
+            var expected = "d";
+            var actual = source.SliceRight(0, 0);
             Assert.Equal(expected, actual);
         }
 
 
         [Fact]
-        public void TestSlice07()
+        public void TestSliceRight07()
         {
             var source = "Ahmad Adel Gad";
-            var expected = "Ah";
-            var actual = source.Slice(0, 1);
+            var expected = "ad";
+            var actual = source.SliceRight(0, 1);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TestSliceRight08()
+        {
+            var source = "Ahmad Adel";
+            var expected = "Ahmad Adel";
+            var actual = source.SliceRight(0, 9);
             Assert.Equal(expected, actual);
         }
     }

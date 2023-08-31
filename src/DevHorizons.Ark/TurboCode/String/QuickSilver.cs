@@ -28,42 +28,208 @@ namespace DevHorizons.Ark.TurboCode
     public static partial class JString
     {
         /// <summary>
-        ///    Slices the specified source.
+        ///    Retrieves a sub-string from this instance based on the specified startIndex position from the right until the end of the string (the left).
         /// </summary>
         /// <param name="source">
         ///     The input source string.
         ///     <para>Cannot be null.</para>
-        ///     <para>Can be empty string however, both start and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        ///     <para>Can be empty string however, both startIndex and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        /// </param>
+        /// <param name="startIndex">
+        ///    The startIndex/first index/position from the right in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be greater than the 'end' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <returns>
+        ///    A sub-string from this instance based on the specified startIndex position from the right and the specified length.
+        /// </returns>
+        /// <exception cref="ArgumentNullException" />
+        /// <exception cref="ArgumentException" />
+        /// <remarks>
+        ///    The zero-based index is the first charcter from the right side of the string.
+        ///    <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
+        ///    <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
+        ///    <para>If the input source is an empty string and both startIndex and end are equal to zero, then the return would be empty string, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        ///    <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the out-of-the-box "Substring" extension method.</para>
+        /// </remarks>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        /// </Created>
+        public static string CutRight(this string source, int startIndex)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (startIndex < 0)
+            {
+                var argumentName = nameof(startIndex);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (startIndex > source.Length - 1 && startIndex != 0)
+            {
+                var argumentName = nameof(startIndex);
+                var conflictArgument = nameof(source);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The '{argumentName}' cannot be greater than the upper bound index of the string value of the argument '{conflictArgument}'.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+
+            return source.CutRightInternal(startIndex);
+        }
+
+        /// <summary>
+        ///    Retrieves a sub-string from this instance based on the specified startIndex position from the right and the specified length.
+        /// </summary>
+        /// <param name="source">
+        ///     The input source string.
+        ///     <para>Cannot be null.</para>
+        ///     <para>Can be empty string however, both startIndex and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        /// </param>
+        /// <param name="startIndex">
+        ///    The startIndex/first index/position from the right in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be greater than the 'end' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <param name="length">
+        ///    The length of the string to cut.
+        ///    <para>Cannot be less than 0.</para>
+        ///    <para>Cannot be greater than the length the string value of the argument 'source'.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        ///    <para>Will return empty strin if assigned to zero.</para>
+        /// </param>
+        /// <returns>
+        ///    A sub-string from this instance based on the specified startIndex position from the right and the specified length.
+        /// </returns>
+        /// <exception cref="ArgumentNullException" />
+        /// <exception cref="ArgumentException" />
+        /// <remarks>
+        ///    The zero-based index is the first charcter from the right side of the string.
+        ///    <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
+        ///    <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
+        ///    <para>If the input source is an empty string and both startIndex and end are equal to zero, then the return would be empty string, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        ///    <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the out-of-the-box "Substring" extension method.</para>
+        /// </remarks>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        /// </Created>
+        public static string CutRight(this string source, int startIndex, int length)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (startIndex < 0)
+            {
+                var argumentName = nameof(startIndex);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (length < 0)
+            {
+                var argumentName = nameof(length);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (startIndex > source.Length - 1 && startIndex != 0)
+            {
+                var argumentName = nameof(startIndex);
+                var conflictArgument = nameof(source);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The '{argumentName}' cannot be greater than the upper bound index of the string value of the argument '{conflictArgument}'.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+            if (startIndex + length > source.Length)
+            {
+                var argumentName = nameof(startIndex);
+                var conflictArgument = nameof(length);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The value of the '{argumentName}' plus the value of the argument '{conflictArgument}' cannot be greater than the length of the input source.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+
+            return source.CutRightInternal(startIndex, length);
+        }
+
+        /// <summary>
+        ///    Slices the specified source from left to right where the base zero index is the first character in from the left side of the string.
+        /// </summary>
+        /// <param name="source">
+        ///     The input source string.
+        ///     <para>Cannot be null.</para>
+        ///     <para>Can be empty string however, both startIndex and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
         /// </param>
         /// <param name="start">
-        ///    The start/first index/position in the specified 'source' string to slice.
+        ///    The startIndex/first index/position from the left in the specified 'source' string to slice.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
         ///    <para>Cannot be greater than the 'end' value.</para>
         ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
         /// </param>
         /// <param name="end">
-        ///    The last index/position in the specified 'source' string to slice.
+        ///    The last index/position from the left in the specified 'source' string to slice.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
-        ///    <para>Cannot be less than the 'start' value.</para>
+        ///    <para>Cannot be less than the 'startIndex' value.</para>
         ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
         /// </param>
         /// <returns>
-        ///    A slice of string which has specific start index and specific end index within the string length.
+        ///    A slice of string (from the left to the right) which has specific startIndex index and specific end index within the string length.
         /// </returns>
         /// <exception cref="ArgumentNullException" />
         /// <exception cref="ArgumentException" />
         /// <remarks>
         ///     <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
-        ///     <para>If the input source is an empty string and both start and end are equal to zero, then the return would be empty string, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        ///     <para>If the input source is an empty string and both startIndex and end are equal to zero, then the return would be empty string, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
         /// </remarks>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>15/07/2012  01:17 AM</DateTime>
         /// </Created>
-        public static string Slice(this string source, int start, int end)
+        public static string SliceLeft(this string source, int start, int end)
         {
             if (source == null)
             {
@@ -157,7 +323,142 @@ namespace DevHorizons.Ark.TurboCode
                 throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
             }
 
-            return source.SliceInternal(start, end);
+            return source.SliceLeftInternal(start, end);
+        }
+
+        /// <summary>
+        ///    Slices the specified source from right to left where the base zero index is the first character in from the right side of the string.
+        /// </summary>
+        /// <param name="source">
+        ///     The input source string.
+        ///     <para>Cannot be null.</para>
+        ///     <para>Can be empty string however, both startIndex and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        /// </param>
+        /// <param name="start">
+        ///    The startIndex/first index/position from the right in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be greater than the 'end' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <param name="end">
+        ///    The last index/position from the right in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be less than the 'startIndex' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <returns>
+        ///    A slice of string (from the right to the left) which has specific startIndex index and specific end index within the string length.
+        /// </returns>
+        /// <exception cref="ArgumentNullException" />
+        /// <exception cref="ArgumentException" />
+        /// <remarks>
+        ///     <para>The zero-based index is the first charcter from the right side of the string.</para>
+        ///     <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
+        ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
+        ///     <para>If the input source is an empty string and both startIndex and end are equal to zero, then the return would be empty string, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SliceLeft(string, int, int)"/>" extension method.</para>
+        /// </remarks>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        /// </Created>
+        public static string SliceRight(this string source, int start, int end)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (start < 0)
+            {
+                var argumentName = nameof(start);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (end < 0)
+            {
+                var argumentName = nameof(end);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
+                var exceptionCode = ArgumentExceptionCode.OutRange;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
+            }
+
+            if (start > end)
+            {
+                var argumentName = nameof(start);
+                var conflictArgument = nameof(end);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The value of the '{argumentName}' argument cannot be greater than or equal the value of the argument '{conflictArgument}'.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+            if (source.Length == 0)
+            {
+                var argumentName = nameof(source);
+                var conflictArgument = JString.Null;
+
+                if (start != 0)
+                {
+                    conflictArgument = nameof(start);
+                }
+                else if (end != 0)
+                {
+                    conflictArgument = nameof(end);
+                }
+
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The '{conflictArgument}' value cannot be greater than zero if the input digital value of the argument '{argumentName}' is an empty string.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument | ArgumentExceptionCode.EmptyString;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+            if (start > source.Length - 1)
+            {
+                var argumentName = nameof(start);
+                var conflictArgument = nameof(source);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The '{argumentName}' cannot be greater than the upper bound index of the string value of the argument '{conflictArgument}'.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+
+            if (end > source.Length - 1)
+            {
+                var argumentName = nameof(end);
+                var conflictArgument = nameof(source);
+                var stackFrame = new StackFrame();
+                var stackStrace = new StackTrace();
+                var message = $"The '{argumentName}' cannot be greater than the upper bound index of the string value of the argument '{conflictArgument}'.";
+                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
+                var code = (long)exceptionCode;
+
+                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
+            }
+
+            return source.SliceRightInternal(start, end);
         }
 
         /// <summary>
@@ -249,6 +550,7 @@ namespace DevHorizons.Ark.TurboCode
         ///    The right part of string based on the mentioned length.
         ///    <para>Will return 'null' if the input source is null.</para>
         ///    <para>Will return 'empty string' if the input source is an empty string.</para>
+        ///    <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="Left(string, int)"/>" extension method.</para>
         /// </returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
@@ -354,7 +656,7 @@ namespace DevHorizons.Ark.TurboCode
 
             source = source.ToLower(culture);
             var strBuilder = new StringBuilder(source[0].ToUpper(culture).ToString(), source.Length);
-            
+
 
             for (int i = 1; i < source.Length; i++)
             {
@@ -431,37 +733,143 @@ namespace DevHorizons.Ark.TurboCode
 
         #region Internal Functions
         /// <summary>
-        ///    Slices the specified source.
+        ///    Slices the specified source from left to right where the base zero index is the first character in from the left side of the string.
         /// </summary>
         /// <param name="source">
         ///     The input source string.
         ///     <para>Cannot be null.</para>
-        ///     <para>Can be empty string however, both start and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        ///     <para>Can be empty string however, both startIndex and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
         /// </param>
         /// <param name="start">
-        ///    The start/first index/position in the specified 'source' string to slice.
+        ///    The startIndex/first index/position from the left in the specified 'source' string to slice.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
         ///    <para>Cannot be greater than the 'end' value.</para>
         ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
         /// </param>
         /// <param name="end">
-        ///    The last index/position in the specified 'source' string to slice.
+        ///    The last index/position from the left in the specified 'source' string to slice.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
-        ///    <para>Cannot be less than the 'start' value.</para>
+        ///    <para>Cannot be less than the 'startIndex' value.</para>
         ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
         /// </param>
         /// <returns>
-        ///    A slice of string which has specific start index and specific end index within the string length.
+        ///    A slice of string (from the left to the right) which has specific startIndex index and specific end index within the string length.
         /// </returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>15/07/2012  01:17 AM</DateTime>
         /// </Created>
-        internal static string SliceInternal(this string source, int start, int end)
+        internal static string SliceLeftInternal(this string source, int start, int end)
         {
             return source.Substring(start, end - start + 1);
+        }
+
+        /// <summary>
+        ///    Slices the specified source from right to left where the base zero index is the first character in from the right side of the string.
+        /// </summary>
+        /// <param name="source">
+        ///     The input source string.
+        ///     <para>Cannot be null.</para>
+        ///     <para>Can be empty string however, both startIndex and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        /// </param>
+        /// <param name="start">
+        ///    The startIndex/first index/position from the right in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be greater than the 'end' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <param name="end">
+        ///    The last index/position from the right in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be less than the 'startIndex' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <returns>
+        ///    A slice of string (from the right to the left) which has specific startIndex index and specific end index within the string length.
+        /// </returns>
+        /// <remarks>
+        ///     The zero-based index is the first charcter from the right side of the string.
+        /// </remarks>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        /// </Created>
+        internal static string SliceRightInternal(this string source, int start, int end)
+        {
+            var upperBound = source.Length - 1;
+            return source.SliceLeftInternal(upperBound - end, upperBound - start);
+        }
+
+        /// <summary>
+        ///    Retrieves a sub-string from this instance based on the specified startIndex position from the right until the end of the string (the left).
+        /// </summary>
+        /// <param name="source">
+        ///     The input source string.
+        ///     <para>Cannot be null.</para>
+        ///     <para>Can be empty string however, both startIndex and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        /// </param>
+        /// <param name="startIndex">
+        ///    The startIndex/first index/position from the right in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be greater than the 'end' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <returns>
+        ///    A sub-string from this instance based on the specified startIndex position from the right and the specified length.
+        /// </returns>
+        /// <remarks>
+        ///    The zero-based index is the first charcter from the right side of the string.
+        ///    <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the out-of-the-box "Substring" extension method.</para>
+        /// </remarks>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        /// </Created>
+        public static string CutRightInternal(this string source, int startIndex)
+        {
+            return source.Substring(0, source.Length - startIndex);
+        }
+
+        /// <summary>
+        ///    Retrieves a sub-string from this instance based on the specified startIndex position from the right and the specified length.
+        /// </summary>
+        /// <param name="source">
+        ///     The input source string.
+        ///     <para>Cannot be null.</para>
+        ///     <para>Can be empty string however, both startIndex and end must be zero, otherwise, the '<see cref="ArgumentException"/>' will be thrown.</para>
+        /// </param>
+        /// <param name="startIndex">
+        ///    The startIndex/first index/position from the right in the specified 'source' string to slice.
+        ///    <para>Cannot be less than zero.</para>
+        ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
+        ///    <para>Cannot be greater than the 'end' value.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        /// </param>
+        /// <param name="length">
+        ///    The length of the string to cut.
+        ///    <para>Cannot be less than 0.</para>
+        ///    <para>Cannot be greater than the length the string value of the argument 'source'.</para>
+        ///    <para>If the input source is an empty string, then the only value is accepted is zero.</para>
+        ///    <para>Will return empty strin if assigned to zero.</para>
+        /// </param>
+        /// <returns>
+        ///    A sub-string from this instance based on the specified startIndex position from the right and the specified length.
+        /// </returns>
+        /// <remarks>
+        ///    The zero-based index is the first charcter from the right side of the string.
+        /// </remarks>
+        /// <Created>
+        ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
+        ///     <DateTime>15/07/2012  01:17 AM</DateTime>
+        /// </Created>
+        internal static string CutRightInternal(this string source, int startIndex, int length)
+        {
+            return source.Substring(source.Length - startIndex - length, length);
         }
         #endregion Internal Functions
     }
