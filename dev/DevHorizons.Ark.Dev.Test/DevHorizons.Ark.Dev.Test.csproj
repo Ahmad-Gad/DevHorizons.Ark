@@ -22,7 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\DevHorizons.Ark\DevHorizons.Ark.csproj" />
+    <ProjectReference Include="..\DevHorizons.Ark.Dev\DevHorizons.Ark.Dev.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validation\" />
   </ItemGroup>
 
 </Project>

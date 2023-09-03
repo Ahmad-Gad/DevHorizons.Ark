@@ -276,7 +276,7 @@ namespace DevHorizons.Ark.TurboCode
                 throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
             }
 
-            source = source.Substring(start, end - start + 1);
+            source = source.SliceRightInternal(start, end);
 
             var del = delimiter;
             var txt = source;
@@ -308,7 +308,7 @@ namespace DevHorizons.Ark.TurboCode
             //// ---------------------------------------------------------
             for (var i = 0; i < txt.Length; i++)
             {
-                if (txt[i] == del)
+                if (txt[txt.Length - 1 - i] == del)
                 {
                     counter++;
                     if (counter == index)
@@ -321,13 +321,13 @@ namespace DevHorizons.Ark.TurboCode
                             }
                             else
                             {
-                                return source.Substring(0, i);
+                                return source.CutRightInternal(0, i);
                             }
 
                         }
                         else
                         {
-                            return source.Substring(start, i - start);
+                            return source.CutRightInternal(start, i - start);
                         }
                     }
 
@@ -337,7 +337,7 @@ namespace DevHorizons.Ark.TurboCode
 
             if (counter != -1 && counter == index - 1)
             {
-                return source.Substring(start);
+                return source.CutRightInternal(start);
             }
 
             return null;

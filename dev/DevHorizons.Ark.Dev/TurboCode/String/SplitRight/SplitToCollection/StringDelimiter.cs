@@ -10,7 +10,7 @@
 //     <DateTime>24/08/2010  10:22 AM</DateTime>
 // </Created>
 // --------------------------------------------------------------------------------------------------------------------
-namespace DevHorizons.Ark.TurboCode
+namespace DevHorizons.Ark.Dev.TurboCode
 {
     using System.Diagnostics;
     using System.Globalization;
@@ -26,7 +26,7 @@ namespace DevHorizons.Ark.TurboCode
     public static partial class JString
     {
         /// <summary>
-        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the right.
+        ///     Splits the specified source string from the right to left by a specific separator/delimiter into collection of strings assuming that the first character/index is the first character from the right.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -36,10 +36,6 @@ namespace DevHorizons.Ark.TurboCode
         ///    The separator.
         ///    <para>Cannot be null or empty string.</para>
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
-        /// </param>
-        /// <param name="index">
-        ///    The specified index for the split item from the right side.
-        ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="matchCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.
@@ -59,20 +55,20 @@ namespace DevHorizons.Ark.TurboCode
         ///     <para>Will return 'null' if the 'delimiter' does not exist in the specified input source.</para>
         ///     <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
-        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitCutLeft(string, string, int, bool, CultureInfo)"/>" extension method.</para>
+        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitLeft(string, string, bool, CultureInfo)"/>" extension method.</para>
         /// </remarks>
-        /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
+        /// <returns>Collection of split strings by a specific separator (from right to left) or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        public static string SplitCutRight(this string source, string delimiter, int index, bool matchCase = true, CultureInfo culture = null)
+        public static List<string> SplitRight(this string source, string delimiter, bool matchCase = true, CultureInfo culture = null)
         {
-            return source.SplitCutRight(delimiter, index, 0, matchCase, culture);
+            return source.SplitRight(delimiter, 0, matchCase, culture);
         }
 
         /// <summary>
-        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the right.
+        ///     Splits the specified source string from the right to left by a specific separator/delimiter into collection of strings assuming that the first character/index is the first character from the right.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -82,10 +78,6 @@ namespace DevHorizons.Ark.TurboCode
         ///    The separator.
         ///    <para>Cannot be null or empty string.</para>
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
-        /// </param>
-        /// <param name="index">
-        ///    The specified index for the split item from the right side.
-        ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="start">
         ///    The start index in the specified 'source' string from the right side, where the split operation should start.
@@ -110,25 +102,25 @@ namespace DevHorizons.Ark.TurboCode
         ///     <para>Will return 'null' if the 'delimiter' does not exist in the specified input source.</para>
         ///     <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
-        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitCutLeft(string, string, int, int, bool, CultureInfo)"/>" extension method.</para>
+        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitLeft(string, string, int, bool, CultureInfo)"/>" extension method.</para>
         /// </remarks>
-        /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
+        /// <returns>Collection of split strings by a specific separator (from right to left) or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        public static string SplitCutRight(this string source, string delimiter, int index, int start, bool matchCase = true, CultureInfo culture = null)
+        public static List<string> SplitRight(this string source, string delimiter, int start, bool matchCase = true, CultureInfo culture = null)
         {
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return source.SplitCutRight(delimiter, index, start, source.Length - 1, matchCase, culture);
+            return source.SplitRight(delimiter, start, source.Length - 1, matchCase, culture);
         }
 
         /// <summary>
-        ///     Capture part of a string after or before a specific separator based on the specified index assuming that the first character/index is the first character from the right.
+        ///     Splits the specified source string from the right to left by a specific separator/delimiter into collection of strings assuming that the first character/index is the first character from the right.
         /// </summary>
         /// <param name="source">
         ///    The source string to be split.
@@ -138,10 +130,6 @@ namespace DevHorizons.Ark.TurboCode
         ///    The separator.
         ///    <para>Cannot be null or empty string.</para>
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
-        /// </param>
-        /// <param name="index">
-        ///    The specified index for the split item from the right side.
-        ///    <para>Cannot be less than 0.</para>
         /// </param>
         /// <param name="start">
         ///    The start index in the specified 'source' string from the right side, where the split operation should start.
@@ -173,14 +161,14 @@ namespace DevHorizons.Ark.TurboCode
         ///     <para>Will return 'null' if the 'delimiter' does not exist in the specified input source.</para>
         ///     <para>Will throw '<see cref="ArgumentNullException"/>' if the input/source is null.</para>
         ///     <para>Will throw '<see cref="ArgumentException"/>' if the specified arguments are out of range or specified with unexpected/invalid values.</para>
-        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitCutLeft(string, string, int, int, int, bool, CultureInfo)"/>" extension method.</para>
+        ///     <para>The Arabic text already starts from right to left. So, if your intention is to deal with Arabic letters from right to left, then use the "<see cref="SplitLeft(string, string, int, int, bool, CultureInfo)"/>" extension method.</para>
         /// </remarks>
-        /// <returns>Collection of split strings by a specific separator or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
+        /// <returns>Collection of split strings by a specific separator (from right to left) or 'null' if the 'delimiter' does not exist in the specified input source.</returns>
         /// <Created>
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        public static string SplitCutRight(this string source, string delimiter, int index, int start, int end, bool matchCase = true, CultureInfo culture = null)
+        public static List<string> SplitRight(this string source, string delimiter, int start, int end, bool matchCase = true, CultureInfo culture = null)
         {
             if (source == null)
             {
@@ -199,18 +187,6 @@ namespace DevHorizons.Ark.TurboCode
                 var stackStrace = new StackTrace();
                 var message = $"The input digital value of the argument '{argumentName}' cannot be empty string";
                 var exceptionCode = ArgumentExceptionCode.EmptyString;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
-            }
-
-            if (index < 0)
-            {
-                var argumentName = nameof(index);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
-                var exceptionCode = ArgumentExceptionCode.OutRange;
                 var code = (long)exceptionCode;
 
                 throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
@@ -323,18 +299,19 @@ namespace DevHorizons.Ark.TurboCode
 
             if (del.Length == txt.Length)
             {
-                if (del == txt && index <= 1)
+                if (del == txt)
                 {
-                    return string.Empty;
+                    return new List<string> { string.Empty, string.Empty };
                 }
 
                 return null;
             }
 
             var len = txt.Length - delimiter.Length + 1;
+            var array = new List<string>();
             //// ---------------------------------------------------------
             start = -1;
-            var counter = -1;
+            var counter = 0;
             //// ---------------------------------------------------------
             for (var i = 0; i < len; i++)
             {
@@ -342,23 +319,25 @@ namespace DevHorizons.Ark.TurboCode
                 if (txtCut == del)
                 {
                     counter++;
-                    if (counter == index)
-                    {
-                        if (start == -1)
-                        {
-                            if (i == 0)
-                            {
-                                return string.Empty;
-                            }
-                            else
-                            {
-                                return source.CutRightInternal(0, i);
-                            }
 
+                    if (start == -1)
+                    {
+                        if (i == 0)
+                        {
+                            array.Add(string.Empty);
                         }
                         else
                         {
-                            return source.CutRightInternal(start, i - start);
+                            array.Add(source.CutRightInternal(0, i));
+                        }
+                    }
+                    else
+                    {
+                        array.Add(source.CutRightInternal(start, i - start));
+
+                        if (i + 1 == len)
+                        {
+                            array.Add(string.Empty);
                         }
                     }
 
@@ -367,12 +346,17 @@ namespace DevHorizons.Ark.TurboCode
                 }
             }
 
-            if (counter != -1 && counter == index - 1)
+            if (array.Count == 0)
             {
-                return source.CutRightInternal(start);
+                return null;
             }
 
-            return null;
+            if (counter == array.Count)
+            {
+                array.Add(source.CutRightInternal(start));
+            }
+
+            return array;
         }
     }
 }

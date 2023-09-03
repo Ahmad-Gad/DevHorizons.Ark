@@ -4,7 +4,7 @@
     using Exceptions;
     using TurboCode;
 
-    public class SplitCutLeftSCharDelimiterTest
+    public class SplitCutLeftCharDelimiterTest
     {
         #region Test Exceptions
         [Fact]
