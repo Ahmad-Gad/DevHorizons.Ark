@@ -13,9 +13,11 @@ var config = new ManualConfig()
        .AddValidator(JitOptimizationsValidator.DontFailOnError)
        .AddLogger(ConsoleLogger.Default)
        .AddColumnProvider(DefaultColumnProviders.Instance);
-//BenchmarkRunner.Run<SplitLeftBenchmark>(config);
+BenchmarkRunner.Run<SplitLeftBenchmark>(config);
 
-var source = "HelloWorldJanHelloWorldFebHelloWorldMarHelloWorldAprilHelloWorldMayHelloWorldJuneHelloWorldJulyHelloWorldAugustHelloWorldSeptemberHelloWorldOctoberHelloWorldNovemberHelloWorldDecemberHelloWorld";
-var output = source.SplitLeftOrdinalComparisonMemory("HelloWorld".AsMemory());
+// var source = "JanHELLOWORLDFebHELLOWORLD2";
+// var actual = source.SplitLeftOrdinalComparisonSpan("HELLOWORLD");
+// var source = "HelloWorldJanHelloWorldFebHelloWorldMarHelloWorldAprilHelloWorldMayHelloWorldJuneHelloWorldJulyHelloWorldAugustHelloWorldSeptemberHelloWorldOctoberHelloWorldNovemberHelloWorldDecemberHelloWorld";
+// var output = source.SplitLeftOrdinalComparisonSpan("HelloWorld");
 
 Console.WriteLine();

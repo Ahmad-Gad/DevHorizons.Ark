@@ -63,5 +63,23 @@ namespace DevHorizons.Ark.Dev.Validation
 
             return true;
         }
+
+        public static bool CompareTo<T>(this ReadOnlySpan<T> source, ReadOnlySpan<T> value)
+        {
+            if (source.Length != value.Length)
+            {
+                return false;
+            }
+
+            for (var i = 0; i < source.Length; i++)
+            {
+                if (!source[i].Equals(value[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

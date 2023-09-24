@@ -834,6 +834,11 @@ namespace DevHorizons.Ark.Dev.TurboCode
             return source.Slice(start, end - start + 1);
         }
 
+        internal static ReadOnlySpan<char> SliceLeftSpanInternal(this Span<char> source, int start, int end)
+        {
+            return source.Slice(start, end - start + 1);
+        }
+
         internal static ReadOnlyMemory<char> SliceLeftMemoryInternal(this ReadOnlyMemory<char> source, int start, int end)
         {
             return source.Slice(start, end - start + 1);

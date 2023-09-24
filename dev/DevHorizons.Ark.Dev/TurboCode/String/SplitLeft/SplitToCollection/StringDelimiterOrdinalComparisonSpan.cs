@@ -96,49 +96,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
                 throw new ArgumentNullException(nameof(source));
             }
 
-            if (delimiter == null)
-            {
-                throw new ArgumentNullException(nameof(delimiter));
-            }
-
-            if (source.Length == 0)
-            {
-                var argumentName = nameof(source);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The input digital value of the argument '{argumentName}' cannot be empty string";
-                var exceptionCode = ArgumentExceptionCode.EmptyString;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
-            }
-
-            if (delimiter.Length == 0)
-            {
-                var argumentName = nameof(delimiter);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The input digital value of the argument '{argumentName}' cannot be empty string";
-                var exceptionCode = ArgumentExceptionCode.EmptyString;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
-            }
-
-            if (delimiter.Length > source.Length)
-            {
-                var argumentName = nameof(delimiter);
-                var conflictArgument = nameof(source);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The length of the '{argumentName}' argument cannot be greater than the length of the argument '{conflictArgument}'.";
-                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
-            }
-
-            return SplitLeftOrdinalComparisonInternalSpan(source, delimiter, comparisonType);
+            return source.SplitLeftOrdinalComparisonSpan(delimiter, 0, source.Length - 1, comparisonType);
         }
 
         /// <summary>
@@ -154,7 +112,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="start">
-        ///    The start index in the specified 'source' string, where the split operation should start.
+        ///    The markIndex index in the specified 'source' string, where the split operation should markIndex.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
         /// </param>
@@ -194,7 +152,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="start">
-        ///    The start index in the specified 'source' string, where the split operation should start.
+        ///    The markIndex index in the specified 'source' string, where the split operation should markIndex.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
         /// </param>
@@ -221,74 +179,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
                 throw new ArgumentNullException(nameof(source));
             }
 
-            if (delimiter == null)
-            {
-                throw new ArgumentNullException(nameof(delimiter));
-            }
-
-            if (source.Length == 0)
-            {
-                var argumentName = nameof(source);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The input digital value of the argument '{argumentName}' cannot be empty string";
-                var exceptionCode = ArgumentExceptionCode.EmptyString;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
-            }
-
-            if (delimiter.Length == 0)
-            {
-                var argumentName = nameof(delimiter);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The input digital value of the argument '{argumentName}' cannot be empty string";
-                var exceptionCode = ArgumentExceptionCode.EmptyString;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
-            }
-
-            if (delimiter.Length > source.Length)
-            {
-                var argumentName = nameof(delimiter);
-                var conflictArgument = nameof(source);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The length of the '{argumentName}' argument cannot be greater than the length of the argument '{conflictArgument}'.";
-                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
-            }
-
-            if (start < 0)
-            {
-                var argumentName = nameof(start);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The input digital value of the argument '{argumentName}' cannot be lower than zero.";
-                var exceptionCode = ArgumentExceptionCode.OutRange;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame);
-            }
-
-            if (start > source.Length - 1)
-            {
-                var argumentName = nameof(start);
-                var conflictArgument = nameof(source);
-                var stackFrame = new StackFrame();
-                var stackStrace = new StackTrace();
-                var message = $"The '{argumentName}' cannot be greater than the upper bound index of the string value of the argument '{conflictArgument}'.";
-                var exceptionCode = ArgumentExceptionCode.OutRange | ArgumentExceptionCode.ConflictWithOtherArgument;
-                var code = (long)exceptionCode;
-
-                throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
-            }
-
-            return source.AsSpan().Slice(start).SplitLeftOrdinalComparisonInternalSpan(delimiter, comparisonType);
+            return source.SplitLeftOrdinalComparisonSpan(delimiter, start, source.Length - 1, comparisonType);
         }
 
         /// <summary>
@@ -304,7 +195,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="start">
-        ///    The start index in the specified 'source' string, where the split operation should start.
+        ///    The markIndex index in the specified 'source' string, where the split operation should markIndex.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
         ///    <para>Cannot be equal or greater than the 'end' value.</para>
@@ -313,7 +204,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
         ///    The last index in the specified 'source' string, where the split operation should stop.
         ///    <para>Cannot be less than zero, unless the delimiter is just one character.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source', unless the delimiter is just one character.</para>
-        ///    <para>Cannot be equal or less than the 'start' value, unless the delimiter is just one character, then it would be acceptable to be equal to the 'start' value.</para>
+        ///    <para>Cannot be equal or less than the 'markIndex' value, unless the delimiter is just one character, then it would be acceptable to be equal to the 'markIndex' value.</para>
         /// </param>
         /// <param name="ignoreCase">
         ///    The matching case of comparing whether it's sensitive or insensitive.
@@ -351,7 +242,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
         ///    <para>The length cannot be greater than the length of the 'source' string.</para>
         /// </param>
         /// <param name="start">
-        ///    The start index in the specified 'source' string, where the split operation should start.
+        ///    The markIndex index in the specified 'source' string, where the split operation should markIndex.
         ///    <para>Cannot be less than zero.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source'.</para>
         ///    <para>Cannot be equal or greater than the 'end' value.</para>
@@ -360,7 +251,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
         ///    The last index in the specified 'source' string, where the split operation should stop.
         ///    <para>Cannot be less than zero, unless the delimiter is just one character.</para>
         ///    <para>Cannot be greater than the upper bound index of the string value of the argument 'source', unless the delimiter is just one character.</para>
-        ///    <para>Cannot be equal or less than the 'start' value, unless the delimiter is just one character, then it would be acceptable to be equal to the 'start' value.</para>
+        ///    <para>Cannot be equal or less than the 'markIndex' value, unless the delimiter is just one character, then it would be acceptable to be equal to the 'markIndex' value.</para>
         /// </param>
         /// <param name="comparisonType">
         ///    Specifies the culture, case, and comparison rules to be used.
@@ -490,7 +381,7 @@ namespace DevHorizons.Ark.Dev.TurboCode
                 throw new ArgumentException(argumentName, exceptionCode, message, code, stackStrace, stackFrame, conflictArgument);
             }
 
-            return JString.SliceLeftSpanInternal(source, start, end).SplitLeftOrdinalComparisonInternalSpan(delimiter, comparisonType);
+            return SplitLeftOrdinalComparisonInternalSpan(source, delimiter, start, end, comparisonType);
         }
 
         #region Private Methods
@@ -525,36 +416,33 @@ namespace DevHorizons.Ark.Dev.TurboCode
         ///     <Author>Ahmad Gad (ahmad.gad@devhorizons.com)</Author>
         ///     <DateTime>01/07/2012  11:41 AM</DateTime>
         /// </Created>
-        private static ReadOnlySpan<string> SplitLeftOrdinalComparisonInternalSpan(this ReadOnlySpan<char> source, ReadOnlySpan<char> delimiter, StringComparison comparisonType = StringComparison.Ordinal)
+        private static ReadOnlySpan<string> SplitLeftOrdinalComparisonInternalSpanList(this ReadOnlySpan<char> source, ReadOnlySpan<char> delimiter, int start, int end, StringComparison comparisonType = StringComparison.Ordinal)
         {
-          
-
             if (delimiter.Length == source.Length)
             {
                 if (delimiter.Equals(source, comparisonType))
                 {
-                    ReadOnlySpan<string> spanString = new string[] { " ", " " };
-                    return spanString;
+                    return new string[] { string.Empty, string.Empty };
                 }
 
-                return null;
+                return new string[] { source.ToString() };
             }
 
             var array = new List<string>();
-            var len = source.Length - delimiter.Length + 1;
-            
+            var len = end - delimiter.Length + 1;
+
             //// ---------------------------------------------------------
-            var start = -1;
+            var markIndex = -1;
             var counter = 0;
             //// ---------------------------------------------------------
-            for (var i = 0; i < len; i++)
+            for (var i = start; i <= len; i++)
             {
                 var txtCut = source.Slice(i, delimiter.Length);
                 if (txtCut.Equals(delimiter, comparisonType))
                 {
                     counter++;
 
-                    if (start == -1)
+                    if (markIndex == -1)
                     {
                         if (i == 0)
                         {
@@ -562,36 +450,190 @@ namespace DevHorizons.Ark.Dev.TurboCode
                         }
                         else
                         {
-                            array.Add(new string(source.Slice(0, i)));
+                            array.Add(new string(source.SliceLeftSpanInternal(start, i - 1)));
                         }
                     }
                     else
                     {
-                        array.Add(new string(source.Slice(start, i - start)));
+                        array.Add(new string(source.Slice(markIndex, i - markIndex)));
 
-                        if (i + 1 == len)
+                        if (i == len)
                         {
                             array.Add(string.Empty);
                         }
                     }
 
-                    start = i + delimiter.Length;
+                    markIndex = i + delimiter.Length;
                     i += delimiter.Length - 1;
                 }
             }
 
             if (array.Count == 0)
             {
-                return null;
+                return new string[] { source.ToString() }; ;
             }
 
             if (counter == array.Count)
             {
-                array.Add(new string(source.Slice(start)));
+                array.Add(new string(source.SliceLeftSpanInternal(markIndex, end)));
             }
 
             return array.ToArray();
         }
+
+        private static ReadOnlySpan<string> SplitLeftOrdinalComparisonInternalSpan(this ReadOnlySpan<char> source, ReadOnlySpan<char> delimiter, int start, int end, StringComparison comparisonType = StringComparison.Ordinal)
+        {
+            if (delimiter.Length == source.Length)
+            {
+                if (delimiter.Equals(source, comparisonType))
+                {
+                    return new string[] { string.Empty, string.Empty };
+                }
+
+                return new string[] { source.ToString() };
+            }
+
+            Span<string> spanBank = new string[(source.Length / delimiter.Length) + 2];
+
+            var len = end - delimiter.Length + 1;
+
+            //// ---------------------------------------------------------
+            var markIndex = -1;
+            var counter = 0;
+            var bankIndex = -1;
+            //// ---------------------------------------------------------
+            for (var i = start; i <= len; i++)
+            {
+                var txtCut = source.Slice(i, delimiter.Length);
+                if (txtCut.Equals(delimiter, comparisonType))
+                {
+                    counter++;
+
+                    if (markIndex == -1)
+                    {
+                        if (i == 0)
+                        {
+                            spanBank[++bankIndex] = string.Empty;
+                        }
+                        else
+                        {
+                            spanBank[++bankIndex] = new string(source.SliceLeftSpanInternal(start, i - 1));
+                        }
+                    }
+                    else
+                    {
+                        spanBank[++bankIndex] = new string(source.Slice(markIndex, i - markIndex));
+
+                        if (i == len)
+                        {
+                            spanBank[++bankIndex] = string.Empty;
+                        }
+                    }
+
+                    markIndex = i + delimiter.Length;
+                    // bankIndex++;
+                    i += delimiter.Length - 1;
+                }
+            }
+
+            if (bankIndex == -1)
+            {
+                return new string[] { source.ToString() };
+            }
+
+            if (counter == bankIndex + 1)
+            {
+                spanBank[++bankIndex] = new string(source.SliceLeftSpanInternal(markIndex, end));
+            }
+
+            return spanBank.Slice(0, bankIndex + 1);
+        }
+
+        /*
+        private unsafe static ReadOnlySpan<string> SplitLeftUnsafeInternal(this ReadOnlySpan<char> source, ReadOnlySpan<char> delimiter, int start, int end, StringComparison comparisonType = StringComparison.Ordinal)
+        {
+            if (delimiter.Length == source.Length)
+            {
+                if (delimiter.Equals(source, comparisonType))
+                {
+                    return new string[] { string.Empty, string.Empty };
+                }
+
+                return new string[] { source.ToString() };
+            }
+
+            Span<string> spanBank = new string[(source.Length / delimiter.Length) + 2];
+            Span<char> delSpan = stackalloc char[delimiter.Length];
+            var len = end - delimiter.Length + 1;
+            Span<char> txtCut = stackalloc char[len];
+            //// ---------------------------------------------------------
+            var markIndex = -1;
+            var counter = -1;
+            var bankIndex = -1;
+            var txtCutCounter = -1;
+            int delCounter = -1;
+            //// ---------------------------------------------------------
+            fixed (char* pt = source)
+            {
+                for (var i = start; i <= len; i++)
+                {
+                    if (delCounter < delimiter.Length - 1)
+                    {
+                        delSpan[++delCounter] = pt[i];
+                        continue;
+                    }
+                    else
+                    {
+                        txtCut[++txtCutCounter] = pt[i];
+                    }
+
+                    
+                    // var txtCut = source.Slice(i, delimiter.Length);
+                    //if (delSpan.Equals(delimiter, comparisonType))
+                    if (delimiter.Equals(delSpan, comparisonType))
+                    {
+                        delCounter = -1;
+                        counter++;
+
+                        if (markIndex == -1 && counter == 0)
+                        {
+                            spanBank[++bankIndex] = string.Empty;
+                        }
+                        else
+                        {
+                            spanBank[++bankIndex] = new string(txtCut.SliceLeftSpanInternal(0, txtCutCounter));
+
+                            if (i == len)
+                            {
+                                spanBank[++bankIndex] = string.Empty;
+                            }
+
+                            txtCutCounter = -1;
+                        }
+
+                        markIndex = i;
+                        // bankIndex++;
+                    }
+
+                    delSpan.Slice(1).CopyTo(delSpan);
+                    delSpan[delSpan.Length - 1] = pt[i];
+                }
+            }
+
+            if (bankIndex == -1)
+            {
+                return new string[] { source.ToString() };
+            }
+
+            if (counter == bankIndex + 1)
+            {
+                spanBank[++bankIndex] = new string(source.SliceLeftSpanInternal(markIndex, end));
+            }
+
+            return spanBank.Slice(0, bankIndex + 1);
+        }
+        */
+
         #endregion Private Methods
     }
 }
